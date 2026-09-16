@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QLKT5 — Báo cáo kỹ thuật</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F2942;
+    --paper:#F7F5F0;
+    --amber:#E8A33D;
+    --slate:#4A5568;
+    --line:#D8D3C8;
+    --green:#2F7D5C;
+    --red:#B4432F;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--navy);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.5;
+  }
+  header{
+    background:var(--navy);
+    color:var(--paper);
+    padding:20px 20px 22px;
+  }
+  header h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:22px;
+    margin:0 0 2px;
+    letter-spacing:-0.01em;
+  }
+  header p{
+    margin:0;
+    font-size:13px;
+    color:#B9C6D6;
+  }
+  .userbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:14px;
+    font-size:13px;
+    border-top:1px solid rgba(255,255,255,0.15);
+    padding-top:10px;
+  }
+  .userbar button{
+    background:none;
+    border:1px solid rgba(255,255,255,0.35);
+    color:var(--paper);
+    padding:5px 10px;
+    border-radius:4px;
+    font-size:12px;
+    cursor:pointer;
+  }
+  main{
+    max-width:640px;
+    margin:0 auto;
+    padding:22px 18px 60px;
+  }
+  .section-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--navy);
+    margin:0 0 12px;
+    padding-bottom:8px;
+    border-bottom:2px solid var(--navy);
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:20px;
+    margin-bottom:20px;
+  }
+  label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--slate);
+    margin:14px 0 5px;
+  }
+  label:first-of-type{margin-top:0;}
+  input,select,textarea{
+    width:100%;
+    padding:10px 11px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    background:#fff;
+    color:var(--navy);
+  }
+  input:focus,select:focus,textarea:focus{
+    outline:2px solid var(--amber);
+    outline-offset:1px;
+    border-color:var(--amber);
+  }
+  textarea{min-height:90px;resize:vertical;}
+  .row2{display:flex;gap:12px;}
+  .row2>div{flex:1;}
+  button.primary{
+    width:100%;
+    margin-top:20px;
+    background:var(--amber);
+    color:var(--navy);
+    border:none;
+    padding:13px;
+    border-radius:5px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+  }
+  button.primary:disabled{opacity:0.5;cursor:default;}
+  button.secondary{
+    width:100%;
+    margin-top:10px;
+    background:transparent;
+    color:var(--slate);
+    border:1px solid var(--line);
+    padding:11px;
+    border-radius:5px;
+    font-size:14px;
+    cursor:pointer;
+  }
+  .msg{
+    margin-top:14px;
+    padding:11px 13px;
+    border-radius:5px;
+    font-size:14px;
+    display:none;
+  }
+  .msg.ok{display:block;background:#E4F1EB;color:var(--green);border:1px solid #BFE0CF;}
+  .msg.err{display:block;background:#F6E4DF;color:var(--red);border:1px solid #EAC1B5;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);}
+  th{color:var(--slate);font-weight:600;font-size:12px;text-transform:none;}
+  td a{color:var(--navy);text-decoration:none;font-weight:600;}
+  .tag{
+    display:inline-block;
+    padding:2px 7px;
+    border-radius:3px;
+    font-size:11.5px;
+    font-weight:600;
+  }
+  .tag.ok{background:#E4F1EB;color:var(--green);}
+  .tag.watch{background:#FBF0DC;color:#9A6B15;}
+  .tag.bad{background:#F6E4DF;color:var(--red);}
+  .hint{font-size:12px;color:var(--slate);margin-top:6px;}
+  .hidden{display:none !important;}
+  a.ghlink{color:var(--navy);}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Quản lý kỹ thuật — QLKT5</h1>
+  <p>Nhập báo cáo & tình trạng hệ thống kỹ thuật</p>
+  <div class="userbar" id="userbar" style="display:none;">
+    <span id="whoami"></span>
+    <button onclick="logout()">Đăng xuất</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- LOGIN -->
+  <section class="card" id="loginCard">
+    <div class="section-title">Kết nối GitHub</div>
+    <label>Chủ repo (username hoặc tổ chức)</label>
+    <input id="cfgOwner" placeholder="vd: nguyenvana">
+    <label>Tên repo</label>
+    <input id="cfgRepo" value="qlkte5">
+    <label>Personal Access Token</label>
+    <input id="cfgToken" type="password" placeholder="ghp_...">
+    <p class="hint">Token cần quyền <b>Contents: Read and write</b> trên repo này. Token chỉ lưu trong trình duyệt của bạn, không gửi đi đâu khác ngoài GitHub.</p>
+    <button class="primary" onclick="login()">Kết nối</button>
+    <div class="msg" id="loginMsg"></div>
+  </section>
+
+  <!-- FORM (shown after login) -->
+  <div id="appArea" class="hidden">
+    <section class="card">
+      <div class="section-title">Nhập báo cáo mới</div>
+      <label>Toà nhà / Dự án</label>
+      <input id="fBuilding" placeholder="vd: Toà nhà 198 NTMK">
+      <div class="row2">
+        <div>
+          <label>Ngày</label>
+          <input id="fDate" type="date">
+        </div>
+        <div>
+          <label>Hạng mục</label>
+          <select id="fCategory">
+            <option>Báo cáo công việc hằng ngày</option>
+            <option>PCCC</option>
+            <option>MSB</option>
+            <option>ĐHKK</option>
+            <option>Thang máy</option>
+            <option>Bơm</option>
+            <option>Camera</option>
+            <option>Kết cấu</option>
+          </select>
+        </div>
+      </div>
+      <label>Tình trạng</label>
+      <select id="fStatus">
+        <option value="Bình thường">Bình thường</option>
+        <option value="Cần theo dõi">Cần theo dõi</option>
+        <option value="Sự cố / Hư hỏng">Sự cố / Hư hỏng</option>
+      </select>
+      <label>Nội dung công việc / Ghi chú</label>
+      <textarea id="fNote" placeholder="Mô tả công việc đã làm, tình trạng thiết bị, đề xuất..."></textarea>
+      <label>Người nhập</label>
+      <input id="fReporter" readonly>
+      <button class="primary" id="submitBtn" onclick="submitReport()">Gửi báo cáo</button>
+      <div class="msg" id="submitMsg"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Báo cáo gần đây</div>
+      <div id="recentArea"><p class="hint">Đang tải...</p></div>
+      <button class="secondary" onclick="loadRecent()">Làm mới danh sách</button>
+    </section>
+  </div>
+
+</main>
+
+<script>
+const LS_KEY = 'qlkt5_config';
+let config = null;
+
+function slug(s){
+  return (s||'').toString().trim().toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'x';
+}
+
+function showMsg(el, text, ok){
+  el.textContent = text;
+  el.className = 'msg ' + (ok ? 'ok' : 'err');
+}
+
+function loadConfig(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw) config = JSON.parse(raw);
+  }catch(e){ config = null; }
+}
+
+function saveConfig(){
+  localStorage.setItem(LS_KEY, JSON.stringify(config));
+}
+
+async function login(){
+  const owner = document.getElementById('cfgOwner').value.trim();
+  const repo = document.getElementById('cfgRepo').value.trim();
+  const token = document.getElementById('cfgToken').value.trim();
+  const msg = document.getElementById('loginMsg');
+  if(!owner || !repo || !token){
+    showMsg(msg, 'Vui lòng điền đủ chủ repo, tên repo và token.', false);
+    return;
+  }
+  try{
+    const res = await fetch('https://api.github.com/user', {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    if(!res.ok) throw new Error('Token không hợp lệ hoặc đã hết hạn.');
+    const user = await res.json();
+
+    const repoRes = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    if(!repoRes.ok) throw new Error('Không truy cập được repo "' + owner + '/' + repo + '". Kiểm tra tên repo và quyền của token.');
+
+    config = { owner, repo, token, login: user.login };
+    saveConfig();
+    enterApp();
+  }catch(e){
+    showMsg(msg, e.message, false);
+  }
+}
+
+function logout(){
+  localStorage.removeItem(LS_KEY);
+  config = null;
+  location.reload();
+}
+
+function enterApp(){
+  document.getElementById('loginCard').classList.add('hidden');
+  document.getElementById('appArea').classList.remove('hidden');
+  document.getElementById('userbar').style.display = 'flex';
+  document.getElementById('whoami').textContent = '@' + config.login + '  ·  ' + config.owner + '/' + config.repo;
+  document.getElementById('fReporter').value = config.login;
+  document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
+  loadRecent();
+}
+
+async function submitReport(){
+  const building = document.getElementById('fBuilding').value.trim();
+  const date = document.getElementById('fDate').value;
+  const category = document.getElementById('fCategory').value;
+  const status = document.getElementById('fStatus').value;
+  const note = document.getElementById('fNote').value.trim();
+  const msg = document.getElementById('submitMsg');
+  const btn = document.getElementById('submitBtn');
+
+  if(!building || !date || !note){
+    showMsg(msg, 'Vui lòng nhập Toà nhà/Dự án, Ngày và Nội dung.', false);
+    return;
+  }
+
+  btn.disabled = true; btn.textContent = 'Đang gửi...';
+
+  const now = new Date();
+  const timePart = now.toTimeString().slice(0,8).replace(/:/g,'');
+  const filename = `${date}_${timePart}_${slug(building)}_${slug(category)}.json`;
+  const path = `data/${filename}`;
+
+  const record = {
+    toa_nha: building,
+    ngay: date,
+    hang_muc: category,
+    tinh_trang: status,
+    noi_dung: note,
+    nguoi_nhap: config.login,
+    thoi_gian_gui: now.toISOString()
+  };
+
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(record, null, 2))));
+
+  try{
+    const res = await fetch(`https://api.github.com/repos/${config.owner}/${config.repo}/contents/${path}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + config.token,
+        'Accept': 'application/vnd.github+json'
+      },
+      body: JSON.stringify({
+        message: `Báo cáo: ${category} - ${building} (${date})`,
+        content: content
+      })
+    });
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      throw new Error(err.message || 'Gửi báo cáo thất bại.');
+    }
+    showMsg(msg, 'Đã lưu báo cáo thành công.', true);
+    document.getElementById('fNote').value = '';
+    loadRecent();
+  }catch(e){
+    showMsg(msg, e.message, false);
+  }finally{
+    btn.disabled = false; btn.textContent = 'Gửi báo cáo';
+  }
+}
+
+async function loadRecent(){
+  const area = document.getElementById('recentArea');
+  area.innerHTML = '<p class="hint">Đang tải...</p>';
+  try{
+    const res = await fetch(`https://api.github.com/repos/${config.owner}/${config.repo}/contents/data`, {
+      headers: { 'Authorization': 'Bearer ' + config.token, 'Accept': 'application/vnd.github+json' }
+    });
+    if(res.status === 404){
+      area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>';
+      return;
+    }
+    if(!res.ok) throw new Error('Không tải được danh sách báo cáo.');
+    const files = await res.json();
+    const rows = files
+      .filter(f => f.name.endsWith('.json'))
+      .sort((a,b) => b.name.localeCompare(a.name))
+      .slice(0, 20);
+    if(rows.length === 0){
+      area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>';
+      return;
+    }
+    let html = '<table><tr><th>Ngày</th><th>Toà nhà</th><th>Hạng mục</th><th></th></tr>';
+    rows.forEach(f => {
+      const parts = f.name.replace('.json','').split('_');
+      const date = parts[0] || '';
+      const building = (parts[2] || '').replace(/-/g,' ');
+      const category = (parts.slice(3).join('-') || '').replace(/-/g,' ');
+      html += `<tr><td>${date}</td><td>${building}</td><td>${category}</td><td><a class="ghlink" href="${f.html_url}" target="_blank">Xem</a></td></tr>`;
+    });
+    html += '</table>';
+    area.innerHTML = html;
+  }catch(e){
+    area.innerHTML = '<p class="hint">' + e.message + '</p>';
+  }
+}
+
+loadConfig();
+if(config && config.owner && config.repo && config.token){
+  enterApp();
+}
+</script>
+</body>
+</html>
