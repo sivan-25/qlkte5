@@ -7,7 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Montserrat:wght@300;400;600;700;800&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#0F2942;
@@ -20,151 +20,190 @@
     --card:#FFFFFF;
   }
   *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--navy);
-    font-family:'Inter',sans-serif;
-    font-size:16px;
-    line-height:1.5;
-  }
-  header{
-    background:var(--navy);
-    color:var(--paper);
-    padding:20px 20px 22px;
-  }
-  header h1{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:22px;
-    margin:0 0 2px;
-    letter-spacing:-0.01em;
-  }
-  header p{
-    margin:0;
-    font-size:13px;
-    color:#B9C6D6;
-  }
-  .userbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:14px;
-    font-size:13px;
-    border-top:1px solid rgba(255,255,255,0.15);
-    padding-top:10px;
-  }
-  .userbar button{
-    background:none;
-    border:1px solid rgba(255,255,255,0.35);
-    color:var(--paper);
-    padding:5px 10px;
-    border-radius:4px;
-    font-size:12px;
-    cursor:pointer;
-  }
-  main{
-    max-width:640px;
-    margin:0 auto;
-    padding:22px 18px 60px;
-  }
-  .section-title{
-    font-family:'Space Grotesk',sans-serif;
-    font-size:15px;
-    font-weight:600;
-    color:var(--navy);
-    margin:0 0 12px;
-    padding-bottom:8px;
-    border-bottom:2px solid var(--navy);
-  }
-  .card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:20px;
-    margin-bottom:20px;
-  }
-  label{
-    display:block;
-    font-size:13px;
-    font-weight:600;
-    color:var(--slate);
-    margin:14px 0 5px;
-  }
+  body{margin:0;background:var(--paper);color:var(--navy);font-family:'Inter',sans-serif;font-size:16px;line-height:1.5;}
+  header{background:var(--navy);color:var(--paper);padding:20px 20px 22px;}
+  header h1{font-family:'Space Grotesk',sans-serif;font-size:22px;margin:0 0 2px;letter-spacing:-0.01em;}
+  header p{margin:0;font-size:13px;color:#B9C6D6;}
+  .userbar{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:13px;border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;}
+  .userbar button{background:none;border:1px solid rgba(255,255,255,0.35);color:var(--paper);padding:5px 10px;border-radius:4px;font-size:12px;cursor:pointer;}
+  .role-tag{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:600;background:var(--amber);color:var(--navy);}
+  main{max-width:640px;margin:0 auto;padding:22px 18px 60px;}
+  .login-wrap{max-width:400px;margin:60px auto;padding:0 18px;}
+  .section-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--navy);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--navy);display:flex;justify-content:space-between;align-items:center;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px;margin-bottom:20px;}
+  label{display:block;font-size:13px;font-weight:600;color:var(--slate);margin:14px 0 5px;}
   label:first-of-type{margin-top:0;}
-  input,select,textarea{
-    width:100%;
-    padding:10px 11px;
-    border:1px solid var(--line);
-    border-radius:5px;
-    font-family:'Inter',sans-serif;
-    font-size:15px;
-    background:#fff;
-    color:var(--navy);
-  }
-  input:focus,select:focus,textarea:focus{
-    outline:2px solid var(--amber);
-    outline-offset:1px;
-    border-color:var(--amber);
-  }
+  input,select,textarea{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:5px;font-family:'Inter',sans-serif;font-size:15px;background:#fff;color:var(--navy);}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--amber);outline-offset:1px;border-color:var(--amber);}
   textarea{min-height:90px;resize:vertical;}
   .row2{display:flex;gap:12px;}
   .row2>div{flex:1;}
-  button.primary{
-    width:100%;
-    margin-top:20px;
-    background:var(--amber);
-    color:var(--navy);
-    border:none;
-    padding:13px;
-    border-radius:5px;
-    font-family:'Space Grotesk',sans-serif;
-    font-weight:600;
-    font-size:15px;
-    cursor:pointer;
-  }
+  button.primary{width:100%;margin-top:20px;background:var(--amber);color:var(--navy);border:none;padding:13px;border-radius:5px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;cursor:pointer;}
   button.primary:disabled{opacity:0.5;cursor:default;}
-  button.secondary{
-    width:100%;
-    margin-top:10px;
-    background:transparent;
-    color:var(--slate);
-    border:1px solid var(--line);
-    padding:11px;
-    border-radius:5px;
-    font-size:14px;
-    cursor:pointer;
-  }
-  .msg{
-    margin-top:14px;
-    padding:11px 13px;
-    border-radius:5px;
-    font-size:14px;
-    display:none;
-  }
+  button.secondary{width:100%;margin-top:10px;background:transparent;color:var(--slate);border:1px solid var(--line);padding:11px;border-radius:5px;font-size:14px;cursor:pointer;}
+  button.link-btn{background:none;border:none;color:var(--navy);font-weight:600;font-size:13px;cursor:pointer;padding:3px 6px;text-decoration:underline;}
+  button.link-btn.danger{color:var(--red);}
+  button.small-add{background:var(--navy);color:#fff;border:none;padding:9px 14px;border-radius:5px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;}
+  .msg{margin-top:14px;padding:11px 13px;border-radius:5px;font-size:14px;display:none;}
   .msg.ok{display:block;background:#E4F1EB;color:var(--green);border:1px solid #BFE0CF;}
   .msg.err{display:block;background:#F6E4DF;color:var(--red);border:1px solid #EAC1B5;}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
   th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);}
-  th{color:var(--slate);font-weight:600;font-size:12px;text-transform:none;}
+  th{color:var(--slate);font-weight:600;font-size:12px;}
   td a{color:var(--navy);text-decoration:none;font-weight:600;}
-  .tag{
-    display:inline-block;
-    padding:2px 7px;
-    border-radius:3px;
-    font-size:11.5px;
-    font-weight:600;
-  }
-  .tag.ok{background:#E4F1EB;color:var(--green);}
-  .tag.watch{background:#FBF0DC;color:#9A6B15;}
-  .tag.bad{background:#F6E4DF;color:var(--red);}
   .hint{font-size:12px;color:var(--slate);margin-top:6px;}
   .hidden{display:none !important;}
-  a.ghlink{color:var(--navy);}
+  .adduser-row{display:flex;gap:8px;margin-top:10px;}
+  .adduser-row input{flex:2;}
+  .adduser-row select{flex:1;}
+  .badge-role{padding:2px 7px;border-radius:3px;font-size:11.5px;font-weight:600;}
+  .badge-role.admin{background:#FBF0DC;color:#9A6B15;}
+  .badge-role.nhanvien{background:#E4F1EB;color:var(--green);}
+
+  /* ===== ESTA landing / login ===== */
+  :root{
+    --esta-aubergine:#411437;
+    --esta-aubergine-dark:#2B1526;
+    --esta-cream:#F3DEBF;
+    --esta-cream-light:#F5ECD0;
+    --esta-copper:#A46427;
+    --esta-taupe:#A99586;
+    --esta-stone:#625045;
+  }
+  #hero{
+    min-height:100vh;
+    background:linear-gradient(180deg,var(--esta-aubergine) 0%,var(--esta-aubergine-dark) 100%);
+    color:var(--esta-cream);
+    font-family:'Montserrat',sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:64px 24px 48px;
+  }
+  .esta-mark{
+    width:64px;height:64px;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(243,222,191,0.35);
+    border-radius:4px;
+    margin-bottom:18px;
+    font-size:26px;
+    color:var(--esta-copper);
+  }
+  .esta-wordmark{
+    font-family:'Montserrat',sans-serif;
+    font-weight:800;
+    font-size:15px;
+    letter-spacing:0.38em;
+    margin:0 0 18px;
+    color:var(--esta-cream);
+  }
+  .esta-wordmark small{
+    display:block;
+    font-weight:300;
+    font-size:9px;
+    letter-spacing:0.28em;
+    color:var(--esta-taupe);
+    margin-top:6px;
+  }
+  .esta-rule{width:46px;height:2px;background:var(--esta-copper);margin:0 0 30px;}
+  #hero h2{
+    font-family:'Montserrat',sans-serif;
+    font-weight:300;
+    font-size:30px;
+    line-height:1.28;
+    margin:0 0 20px;
+    max-width:420px;
+  }
+  #hero h2 em{
+    font-style:italic;
+    font-weight:700;
+    color:var(--esta-copper);
+  }
+  #hero .lead{
+    font-family:'Montserrat',sans-serif;
+    font-weight:300;
+    font-size:14.5px;
+    line-height:1.7;
+    color:var(--esta-taupe);
+    max-width:340px;
+    margin:0 0 34px;
+  }
+  .esta-btn{
+    width:100%;max-width:320px;
+    font-family:'Montserrat',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.14em;
+    padding:16px;
+    border-radius:2px;
+    cursor:pointer;
+    margin-bottom:12px;
+  }
+  .esta-btn.fill{background:var(--esta-copper);border:1px solid var(--esta-copper);color:#fff;}
+  .esta-btn.outline{background:transparent;border:1px solid rgba(243,222,191,0.45);color:var(--esta-cream);}
+  #features{
+    background:var(--esta-cream-light);
+    padding:48px 24px 56px;
+    font-family:'Montserrat',sans-serif;
+  }
+  .feature-item{
+    max-width:420px;margin:0 auto 30px;
+    padding-bottom:26px;
+    border-bottom:1px solid rgba(65,20,55,0.15);
+  }
+  .feature-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .feature-num{
+    color:var(--esta-copper);
+    font-size:12px;font-weight:700;letter-spacing:0.15em;
+    margin-bottom:8px;
+  }
+  .feature-item h3{
+    font-size:17px;font-weight:700;color:var(--esta-aubergine);margin:0 0 6px;
+  }
+  .feature-item p{font-size:13.5px;color:var(--esta-stone);margin:0;line-height:1.55;}
+  .esta-footer{
+    text-align:center;font-family:'Montserrat',sans-serif;font-weight:300;
+    font-size:10.5px;letter-spacing:0.2em;color:var(--esta-taupe);
+    padding:22px 16px 34px;background:var(--esta-cream-light);
+  }
+  #loginWrap{
+    min-height:100vh;
+    background:var(--esta-cream);
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    font-family:'Montserrat',sans-serif;
+  }
+  #loginWrap .login-card{
+    width:100%;max-width:380px;
+    background:#fff;
+    border:1px solid rgba(65,20,55,0.12);
+    padding:34px 28px;
+  }
+  #loginWrap .esta-mark{color:var(--esta-copper);border-color:rgba(65,20,55,0.2);margin:0 auto 16px;}
+  #loginWrap .login-heading{
+    text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;
+    font-size:12px;letter-spacing:0.25em;color:var(--esta-aubergine);margin-bottom:4px;
+  }
+  #loginWrap .login-sub{
+    text-align:center;font-size:12px;color:var(--esta-stone);margin-bottom:26px;
+  }
+  #loginWrap label{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:0.08em;color:var(--esta-stone);text-transform:uppercase;}
+  #loginWrap input{border-radius:2px;border-color:rgba(65,20,55,0.2);}
+  #loginWrap input:focus{outline-color:var(--esta-copper);border-color:var(--esta-copper);}
+  #loginWrap .esta-btn{max-width:none;margin-top:22px;}
+  #loginWrap .hint{color:var(--esta-taupe);}
+  #loginWrap .back-link{
+    display:block;text-align:center;margin-top:18px;font-size:12px;
+    color:var(--esta-stone);text-decoration:underline;background:none;border:none;cursor:pointer;
+    font-family:'Montserrat',sans-serif;
+  }
 </style>
 </head>
 <body>
 
-<header>
+<header id="appHeader" class="hidden">
   <h1>Quản lý kỹ thuật — QLKT5</h1>
   <p>Nhập báo cáo & tình trạng hệ thống kỹ thuật</p>
   <div class="userbar" id="userbar" style="display:none;">
@@ -173,141 +212,293 @@
   </div>
 </header>
 
-<main>
-
-  <!-- LOGIN -->
-  <section class="card" id="loginCard">
-    <div class="section-title">Kết nối GitHub</div>
-    <label>Chủ repo (username hoặc tổ chức)</label>
-    <input id="cfgOwner" placeholder="vd: nguyenvana">
-    <label>Tên repo</label>
-    <input id="cfgRepo" value="qlkte5">
-    <label>Personal Access Token</label>
-    <input id="cfgToken" type="password" placeholder="ghp_...">
-    <p class="hint">Token cần quyền <b>Contents: Read and write</b> trên repo này. Token chỉ lưu trong trình duyệt của bạn, không gửi đi đâu khác ngoài GitHub.</p>
-    <button class="primary" onclick="login()">Kết nối</button>
-    <div class="msg" id="loginMsg"></div>
+<!-- HERO SPLASH -->
+<div id="landing">
+  <section id="hero">
+    <div class="esta-mark">✱</div>
+    <div class="esta-wordmark">ESTA<small>PROPERTY MANAGEMENT</small></div>
+    <div class="esta-rule"></div>
+    <h2>Hệ Thống <em>Quản Lý</em><br>Kỹ Thuật Vận Hành</h2>
+    <p class="lead">Nền tảng số hoá công tác báo cáo và quản lý vận hành kỹ thuật toà nhà — chuẩn hoá, minh bạch, chuyên nghiệp.</p>
+    <button class="esta-btn fill" onclick="showLogin()">ĐĂNG NHẬP</button>
+    <button class="esta-btn outline" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">TÌM HIỂU THÊM</button>
   </section>
 
-  <!-- FORM (shown after login) -->
-  <div id="appArea" class="hidden">
-    <section class="card">
-      <div class="section-title">Nhập báo cáo mới</div>
-      <label>Toà nhà / Dự án</label>
-      <input id="fBuilding" placeholder="vd: Toà nhà 198 NTMK">
-      <div class="row2">
-        <div>
-          <label>Ngày</label>
-          <input id="fDate" type="date">
-        </div>
-        <div>
-          <label>Hạng mục</label>
-          <select id="fCategory">
-            <option>Báo cáo công việc hằng ngày</option>
-            <option>PCCC</option>
-            <option>MSB</option>
-            <option>ĐHKK</option>
-            <option>Thang máy</option>
-            <option>Bơm</option>
-            <option>Camera</option>
-            <option>Kết cấu</option>
-          </select>
-        </div>
-      </div>
-      <label>Tình trạng</label>
-      <select id="fStatus">
-        <option value="Bình thường">Bình thường</option>
-        <option value="Cần theo dõi">Cần theo dõi</option>
-        <option value="Sự cố / Hư hỏng">Sự cố / Hư hỏng</option>
-      </select>
-      <label>Nội dung công việc / Ghi chú</label>
-      <textarea id="fNote" placeholder="Mô tả công việc đã làm, tình trạng thiết bị, đề xuất..."></textarea>
-      <label>Người nhập</label>
-      <input id="fReporter" readonly>
-      <button class="primary" id="submitBtn" onclick="submitReport()">Gửi báo cáo</button>
-      <div class="msg" id="submitMsg"></div>
-    </section>
+  <section id="features">
+    <div class="feature-item">
+      <div class="feature-num">— 01</div>
+      <h3>Báo cáo kỹ thuật hằng ngày</h3>
+      <p>Ghi nhận công việc và tình trạng vận hành theo từng toà nhà, theo thời gian thực.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">— 02</div>
+      <h3>Theo dõi 7 hệ thống trọng yếu</h3>
+      <p>PCCC, MSB, ĐHKK, thang máy, bơm, camera, kết cấu — quản lý tập trung trên một nền tảng.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-num">— 03</div>
+      <h3>Phân quyền rõ ràng</h3>
+      <p>Admin toàn quyền xem, sửa, xoá và cấp quyền; nhân viên kỹ thuật nhập báo cáo theo đúng phạm vi.</p>
+    </div>
+  </section>
 
-    <section class="card">
-      <div class="section-title">Báo cáo gần đây</div>
-      <div id="recentArea"><p class="hint">Đang tải...</p></div>
-      <button class="secondary" onclick="loadRecent()">Làm mới danh sách</button>
-    </section>
+  <div class="esta-footer">ESTA PROPERTY MANAGEMENT · A L'MAK COMPANY · HO CHI MINH CITY</div>
+</div>
+
+<!-- LOGIN SCREEN -->
+<div class="hidden" id="loginWrap">
+  <div class="login-card">
+    <div class="esta-mark">✱</div>
+    <div class="login-heading">ĐĂNG NHẬP HỆ THỐNG</div>
+    <div class="login-sub">Quản lý kỹ thuật vận hành</div>
+    <label>Tên đăng nhập (GitHub username)</label>
+    <input id="loginUser" placeholder="vd: sivan-25" autocomplete="username">
+    <label>Mật khẩu (Personal Access Token)</label>
+    <input id="loginPass" type="password" placeholder="github_pat_..." autocomplete="current-password">
+    <p class="hint">Nếu bạn là người đầu tiên đăng nhập vào hệ thống, tài khoản của bạn sẽ tự động được cấp quyền admin.</p>
+    <button class="esta-btn fill" onclick="login()">ĐĂNG NHẬP</button>
+    <div class="msg" id="loginMsg"></div>
+    <button class="back-link" onclick="backToHero()">← Quay lại</button>
   </div>
+</div>
 
+<main id="appArea" class="hidden">
+
+  <!-- ADMIN: quản lý người dùng -->
+  <section class="card hidden" id="userMgmtCard">
+    <div class="section-title">Quản lý người dùng</div>
+    <div id="userListArea"><p class="hint">Đang tải...</p></div>
+    <div class="adduser-row">
+      <input id="newUserName" placeholder="GitHub username nhân viên">
+      <select id="newUserRole">
+        <option value="nhanvien">Nhân viên</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button class="small-add" onclick="addUser()">Thêm</button>
+    </div>
+    <div class="msg" id="userMgmtMsg"></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title" id="formTitle">Nhập báo cáo mới</div>
+    <label>Toà nhà / Dự án</label>
+    <input id="fBuilding" placeholder="vd: Toà nhà 198 NTMK">
+    <div class="row2">
+      <div>
+        <label>Ngày</label>
+        <input id="fDate" type="date">
+      </div>
+      <div>
+        <label>Hạng mục</label>
+        <select id="fCategory">
+          <option>Báo cáo công việc hằng ngày</option>
+          <option>PCCC</option>
+          <option>MSB</option>
+          <option>ĐHKK</option>
+          <option>Thang máy</option>
+          <option>Bơm</option>
+          <option>Camera</option>
+          <option>Kết cấu</option>
+        </select>
+      </div>
+    </div>
+    <label>Tình trạng</label>
+    <select id="fStatus">
+      <option value="Bình thường">Bình thường</option>
+      <option value="Cần theo dõi">Cần theo dõi</option>
+      <option value="Sự cố / Hư hỏng">Sự cố / Hư hỏng</option>
+    </select>
+    <label>Nội dung công việc / Ghi chú</label>
+    <textarea id="fNote" placeholder="Mô tả công việc đã làm, tình trạng thiết bị, đề xuất..."></textarea>
+    <label>Người nhập</label>
+    <input id="fReporter" readonly>
+    <button class="primary" id="submitBtn" onclick="submitReport()">Gửi báo cáo</button>
+    <button class="secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">Huỷ sửa</button>
+    <div class="msg" id="submitMsg"></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">Báo cáo gần đây</div>
+    <div id="recentArea"><p class="hint">Đang tải...</p></div>
+    <button class="secondary" onclick="loadRecent()">Làm mới danh sách</button>
+  </section>
 </main>
 
 <script>
-const LS_KEY = 'qlkt5_config';
-let config = null;
+const OWNER = 'sivan-25';
+const REPO = 'qlkte5';
+const LS_KEY = 'qlkt5_session';
+const API = `https://api.github.com/repos/${OWNER}/${REPO}`;
+
+let session = null;      // {login, token, role}
+let recentFiles = [];    // cache for admin edit/delete
+let editing = null;      // {path, sha, original_nguoi_nhap}
+let usersCache = { sha: null, list: [] };
 
 function slug(s){
   return (s||'').toString().trim().toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
     .replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'x';
 }
+function showMsg(el, text, ok){ el.textContent = text; el.className = 'msg ' + (ok?'ok':'err'); }
+function b64encode(str){ return btoa(unescape(encodeURIComponent(str))); }
+function b64decode(str){ return decodeURIComponent(escape(atob(str.replace(/\n/g,'')))); }
+function ghHeaders(token){ return { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }; }
 
-function showMsg(el, text, ok){
-  el.textContent = text;
-  el.className = 'msg ' + (ok ? 'ok' : 'err');
-}
-
-function loadConfig(){
+function loadSession(){
   try{
     const raw = localStorage.getItem(LS_KEY);
-    if(raw) config = JSON.parse(raw);
-  }catch(e){ config = null; }
+    if(raw) session = JSON.parse(raw);
+  }catch(e){ session = null; }
 }
-
-function saveConfig(){
-  localStorage.setItem(LS_KEY, JSON.stringify(config));
-}
+function saveSession(){ localStorage.setItem(LS_KEY, JSON.stringify(session)); }
 
 async function login(){
-  const owner = document.getElementById('cfgOwner').value.trim();
-  const repo = document.getElementById('cfgRepo').value.trim();
-  const token = document.getElementById('cfgToken').value.trim();
+  const typedUser = document.getElementById('loginUser').value.trim();
+  const token = document.getElementById('loginPass').value.trim();
   const msg = document.getElementById('loginMsg');
-  if(!owner || !repo || !token){
-    showMsg(msg, 'Vui lòng điền đủ chủ repo, tên repo và token.', false);
-    return;
-  }
+  if(!typedUser || !token){ showMsg(msg, 'Vui lòng nhập tên đăng nhập và mật khẩu.', false); return; }
+
   try{
-    const res = await fetch('https://api.github.com/user', {
-      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
-    });
-    if(!res.ok) throw new Error('Token không hợp lệ hoặc đã hết hạn.');
+    const res = await fetch('https://api.github.com/user', { headers: ghHeaders(token) });
+    if(!res.ok) throw new Error('Sai tên đăng nhập hoặc mật khẩu.');
     const user = await res.json();
+    if(user.login.toLowerCase() !== typedUser.toLowerCase()){
+      throw new Error('Tên đăng nhập không khớp với mật khẩu (token) đã nhập.');
+    }
 
-    const repoRes = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
-      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
-    });
-    if(!repoRes.ok) throw new Error('Không truy cập được repo "' + owner + '/' + repo + '". Kiểm tra tên repo và quyền của token.');
+    const repoRes = await fetch(API, { headers: ghHeaders(token) });
+    if(!repoRes.ok) throw new Error('Tài khoản không có quyền truy cập hệ thống.');
 
-    config = { owner, repo, token, login: user.login };
-    saveConfig();
+    // check / bootstrap users.json
+    const role = await resolveRole(user.login, token);
+    if(role === null){
+      throw new Error('Tài khoản chưa được cấp quyền truy cập. Liên hệ admin để được thêm vào hệ thống.');
+    }
+
+    session = { login: user.login, token, role };
+    saveSession();
     enterApp();
   }catch(e){
     showMsg(msg, e.message, false);
   }
 }
 
-function logout(){
-  localStorage.removeItem(LS_KEY);
-  config = null;
-  location.reload();
+async function resolveRole(login, token){
+  const res = await fetch(`${API}/contents/config/users.json`, { headers: ghHeaders(token) });
+  if(res.status === 404){
+    // bootstrap: first user becomes admin
+    const list = [{ username: login, role: 'admin' }];
+    const content = b64encode(JSON.stringify(list, null, 2));
+    const putRes = await fetch(`${API}/contents/config/users.json`, {
+      method: 'PUT',
+      headers: ghHeaders(token),
+      body: JSON.stringify({ message: `Khởi tạo hệ thống: ${login} là admin`, content })
+    });
+    if(!putRes.ok) throw new Error('Không tạo được file phân quyền ban đầu.');
+    return 'admin';
+  }
+  if(!res.ok) throw new Error('Không đọc được danh sách phân quyền.');
+  const data = await res.json();
+  usersCache.sha = data.sha;
+  const list = JSON.parse(b64decode(data.content));
+  usersCache.list = list;
+  const entry = list.find(u => u.username.toLowerCase() === login.toLowerCase());
+  return entry ? entry.role : null;
+}
+
+function logout(){ localStorage.removeItem(LS_KEY); session = null; location.reload(); }
+
+function showLogin(){
+  document.getElementById('landing').classList.add('hidden');
+  document.getElementById('loginWrap').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+function backToHero(){
+  document.getElementById('loginWrap').classList.add('hidden');
+  document.getElementById('landing').classList.remove('hidden');
+  window.scrollTo(0,0);
 }
 
 function enterApp(){
-  document.getElementById('loginCard').classList.add('hidden');
+  document.getElementById('landing').classList.add('hidden');
+  document.getElementById('loginWrap').classList.add('hidden');
+  document.getElementById('appHeader').classList.remove('hidden');
   document.getElementById('appArea').classList.remove('hidden');
   document.getElementById('userbar').style.display = 'flex';
-  document.getElementById('whoami').textContent = '@' + config.login + '  ·  ' + config.owner + '/' + config.repo;
-  document.getElementById('fReporter').value = config.login;
+  document.getElementById('whoami').innerHTML = '@' + session.login +
+    ' <span class="role-tag">' + (session.role === 'admin' ? 'ADMIN' : 'NHÂN VIÊN') + '</span>';
+  document.getElementById('fReporter').value = session.login;
   document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
+  if(session.role === 'admin'){
+    document.getElementById('userMgmtCard').classList.remove('hidden');
+    loadUsers();
+  }
   loadRecent();
 }
 
+// ---------- User management (admin) ----------
+async function loadUsers(){
+  const area = document.getElementById('userListArea');
+  try{
+    const res = await fetch(`${API}/contents/config/users.json`, { headers: ghHeaders(session.token) });
+    const data = await res.json();
+    usersCache.sha = data.sha;
+    usersCache.list = JSON.parse(b64decode(data.content));
+    renderUsers();
+  }catch(e){
+    area.innerHTML = '<p class="hint">Không tải được danh sách người dùng.</p>';
+  }
+}
+function renderUsers(){
+  const area = document.getElementById('userListArea');
+  let html = '<table><tr><th>Tài khoản</th><th>Quyền</th><th></th></tr>';
+  usersCache.list.forEach(u => {
+    html += `<tr><td>@${u.username}</td><td><span class="badge-role ${u.role}">${u.role === 'admin' ? 'Admin' : 'Nhân viên'}</span></td>` +
+      `<td>${u.username.toLowerCase() === session.login.toLowerCase() ? '' : `<button class="link-btn danger" onclick="removeUser('${u.username}')">Xoá</button>`}</td></tr>`;
+  });
+  html += '</table>';
+  area.innerHTML = html;
+}
+async function saveUsers(message){
+  const content = b64encode(JSON.stringify(usersCache.list, null, 2));
+  const res = await fetch(`${API}/contents/config/users.json`, {
+    method: 'PUT',
+    headers: ghHeaders(session.token),
+    body: JSON.stringify({ message, content, sha: usersCache.sha })
+  });
+  if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.message || 'Lưu thất bại.'); }
+  const data = await res.json();
+  usersCache.sha = data.content.sha;
+}
+async function addUser(){
+  const name = document.getElementById('newUserName').value.trim();
+  const role = document.getElementById('newUserRole').value;
+  const msg = document.getElementById('userMgmtMsg');
+  if(!name){ showMsg(msg, 'Nhập GitHub username của nhân viên.', false); return; }
+  if(usersCache.list.some(u => u.username.toLowerCase() === name.toLowerCase())){
+    showMsg(msg, 'Tài khoản này đã có trong hệ thống.', false); return;
+  }
+  usersCache.list.push({ username: name, role });
+  try{
+    await saveUsers(`Thêm người dùng: ${name} (${role})`);
+    document.getElementById('newUserName').value = '';
+    renderUsers();
+    showMsg(msg, `Đã thêm @${name}.`, true);
+  }catch(e){ showMsg(msg, e.message, false); }
+}
+async function removeUser(name){
+  if(!confirm(`Xoá quyền truy cập của @${name}?`)) return;
+  const msg = document.getElementById('userMgmtMsg');
+  usersCache.list = usersCache.list.filter(u => u.username.toLowerCase() !== name.toLowerCase());
+  try{
+    await saveUsers(`Xoá người dùng: ${name}`);
+    renderUsers();
+    showMsg(msg, `Đã xoá @${name}.`, true);
+  }catch(e){ showMsg(msg, e.message, false); }
+}
+
+// ---------- Reports ----------
 async function submitReport(){
   const building = document.getElementById('fBuilding').value.trim();
   const date = document.getElementById('fDate').value;
@@ -317,84 +508,109 @@ async function submitReport(){
   const msg = document.getElementById('submitMsg');
   const btn = document.getElementById('submitBtn');
 
-  if(!building || !date || !note){
-    showMsg(msg, 'Vui lòng nhập Toà nhà/Dự án, Ngày và Nội dung.', false);
-    return;
-  }
+  if(!building || !date || !note){ showMsg(msg, 'Vui lòng nhập Toà nhà/Dự án, Ngày và Nội dung.', false); return; }
 
-  btn.disabled = true; btn.textContent = 'Đang gửi...';
-
-  const now = new Date();
-  const timePart = now.toTimeString().slice(0,8).replace(/:/g,'');
-  const filename = `${date}_${timePart}_${slug(building)}_${slug(category)}.json`;
-  const path = `data/${filename}`;
+  btn.disabled = true; btn.textContent = editing ? 'Đang cập nhật...' : 'Đang gửi...';
 
   const record = {
-    toa_nha: building,
-    ngay: date,
-    hang_muc: category,
-    tinh_trang: status,
-    noi_dung: note,
-    nguoi_nhap: config.login,
-    thoi_gian_gui: now.toISOString()
+    toa_nha: building, ngay: date, hang_muc: category, tinh_trang: status, noi_dung: note,
+    nguoi_nhap: editing ? editing.original_nguoi_nhap : session.login,
+    thoi_gian_gui: editing ? editing.original_time : new Date().toISOString(),
+    sua_boi: editing ? session.login : undefined,
+    thoi_gian_sua: editing ? new Date().toISOString() : undefined
   };
-
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(record, null, 2))));
+  const content = b64encode(JSON.stringify(record, null, 2));
 
   try{
-    const res = await fetch(`https://api.github.com/repos/${config.owner}/${config.repo}/contents/${path}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': 'Bearer ' + config.token,
-        'Accept': 'application/vnd.github+json'
-      },
-      body: JSON.stringify({
-        message: `Báo cáo: ${category} - ${building} (${date})`,
-        content: content
-      })
-    });
-    if(!res.ok){
-      const err = await res.json().catch(()=>({}));
-      throw new Error(err.message || 'Gửi báo cáo thất bại.');
+    let path, body;
+    if(editing){
+      path = editing.path;
+      body = { message: `Cập nhật báo cáo: ${category} - ${building} (${date})`, content, sha: editing.sha };
+    }else{
+      const now = new Date();
+      const timePart = now.toTimeString().slice(0,8).replace(/:/g,'');
+      path = `data/${date}_${timePart}_${slug(building)}_${slug(category)}.json`;
+      body = { message: `Báo cáo: ${category} - ${building} (${date})`, content };
     }
-    showMsg(msg, 'Đã lưu báo cáo thành công.', true);
+    const res = await fetch(`${API}/contents/${path}`, { method: 'PUT', headers: ghHeaders(session.token), body: JSON.stringify(body) });
+    if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.message || 'Gửi báo cáo thất bại.'); }
+    showMsg(msg, editing ? 'Đã cập nhật báo cáo.' : 'Đã lưu báo cáo thành công.', true);
+    cancelEdit();
     document.getElementById('fNote').value = '';
     loadRecent();
   }catch(e){
     showMsg(msg, e.message, false);
   }finally{
-    btn.disabled = false; btn.textContent = 'Gửi báo cáo';
+    btn.disabled = false; btn.textContent = editing ? 'Cập nhật báo cáo' : 'Gửi báo cáo';
   }
+}
+
+function cancelEdit(){
+  editing = null;
+  document.getElementById('formTitle').textContent = 'Nhập báo cáo mới';
+  document.getElementById('submitBtn').textContent = 'Gửi báo cáo';
+  document.getElementById('cancelEditBtn').classList.add('hidden');
+  document.getElementById('fReporter').value = session.login;
+}
+
+async function editReport(path, sha){
+  try{
+    const res = await fetch(`${API}/contents/${path}`, { headers: ghHeaders(session.token) });
+    if(!res.ok) throw new Error('Không tải được báo cáo.');
+    const data = await res.json();
+    const rec = JSON.parse(b64decode(data.content));
+    document.getElementById('fBuilding').value = rec.toa_nha || '';
+    document.getElementById('fDate').value = rec.ngay || '';
+    document.getElementById('fCategory').value = rec.hang_muc || '';
+    document.getElementById('fStatus').value = rec.tinh_trang || 'Bình thường';
+    document.getElementById('fNote').value = rec.noi_dung || '';
+    document.getElementById('fReporter').value = rec.nguoi_nhap || '';
+    editing = { path, sha: data.sha, original_nguoi_nhap: rec.nguoi_nhap, original_time: rec.thoi_gian_gui };
+    document.getElementById('formTitle').textContent = 'Sửa báo cáo';
+    document.getElementById('submitBtn').textContent = 'Cập nhật báo cáo';
+    document.getElementById('cancelEditBtn').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }catch(e){
+    alert(e.message);
+  }
+}
+
+async function deleteReport(path, sha, label){
+  if(!confirm(`Xoá báo cáo "${label}"? Không thể hoàn tác.`)) return;
+  try{
+    const res = await fetch(`${API}/contents/${path}`, {
+      method: 'DELETE', headers: ghHeaders(session.token),
+      body: JSON.stringify({ message: `Xoá báo cáo: ${label}`, sha })
+    });
+    if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.message || 'Xoá thất bại.'); }
+    loadRecent();
+  }catch(e){ alert(e.message); }
 }
 
 async function loadRecent(){
   const area = document.getElementById('recentArea');
   area.innerHTML = '<p class="hint">Đang tải...</p>';
   try{
-    const res = await fetch(`https://api.github.com/repos/${config.owner}/${config.repo}/contents/data`, {
-      headers: { 'Authorization': 'Bearer ' + config.token, 'Accept': 'application/vnd.github+json' }
-    });
-    if(res.status === 404){
-      area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>';
-      return;
-    }
+    const res = await fetch(`${API}/contents/data`, { headers: ghHeaders(session.token) });
+    if(res.status === 404){ area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>'; return; }
     if(!res.ok) throw new Error('Không tải được danh sách báo cáo.');
     const files = await res.json();
-    const rows = files
-      .filter(f => f.name.endsWith('.json'))
-      .sort((a,b) => b.name.localeCompare(a.name))
-      .slice(0, 20);
-    if(rows.length === 0){
-      area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>';
-      return;
-    }
-    let html = '<table><tr><th>Ngày</th><th>Toà nhà</th><th>Hạng mục</th><th></th></tr>';
-    rows.forEach(f => {
+    recentFiles = files.filter(f => f.name.endsWith('.json')).sort((a,b) => b.name.localeCompare(a.name)).slice(0, 30);
+    if(recentFiles.length === 0){ area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>'; return; }
+
+    const isAdmin = session.role === 'admin';
+    let html = '<table><tr><th>Ngày</th><th>Toà nhà</th><th>Hạng mục</th><th></th>' + (isAdmin ? '<th></th><th></th>' : '') + '</tr>';
+    recentFiles.forEach(f => {
       const parts = f.name.replace('.json','').split('_');
       const date = parts[0] || '';
       const building = (parts[2] || '').replace(/-/g,' ');
       const category = (parts.slice(3).join('-') || '').replace(/-/g,' ');
-      html += `<tr><td>${date}</td><td>${building}</td><td>${category}</td><td><a class="ghlink" href="${f.html_url}" target="_blank">Xem</a></td></tr>`;
+      html += `<tr><td>${date}</td><td>${building}</td><td>${category}</td><td><a href="${f.html_url}" target="_blank">Xem</a></td>`;
+      if(isAdmin){
+        html += `<td><button class="link-btn" onclick="editReport('${f.path}','${f.sha}')">Sửa</button></td>`;
+        html += `<td><button class="link-btn danger" onclick="deleteReport('${f.path}','${f.sha}','${building} - ${date}')">Xoá</button></td>`;
+      }
+      html += '</tr>';
     });
     html += '</table>';
     area.innerHTML = html;
@@ -403,10 +619,8 @@ async function loadRecent(){
   }
 }
 
-loadConfig();
-if(config && config.owner && config.repo && config.token){
-  enterApp();
-}
+loadSession();
+if(session && session.login && session.token){ enterApp(); }
 </script>
 </body>
 </html>
