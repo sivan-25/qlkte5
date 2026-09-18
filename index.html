@@ -175,6 +175,8 @@
   .topbar-search input{width:100%;padding:8px 12px 8px 34px;border:1px solid var(--db-border);border-radius:6px;background:var(--db-bg);font-size:13px;}
   .topbar-right{margin-left:auto;display:flex;align-items:center;gap:16px;}
   .topbar-right i{font-size:18px;color:var(--db-sub);cursor:pointer;}
+  .topbar-right i.ti-file-type-pdf{color:#C0392B;font-size:19px;}
+  .topbar-right i.ti-file-type-pdf:hover{color:#96291F;}
   .avatar-chip{width:32px;height:32px;border-radius:50%;background:var(--db-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
   .who-box{display:flex;flex-direction:column;line-height:1.25;}
   .who-box .name{font-size:12.5px;font-weight:600;color:var(--db-text);}
@@ -195,6 +197,21 @@
     width:100%;padding:8px 10px;border:1px solid var(--db-border);border-radius:6px;font-size:13px;color:var(--db-text);font-family:'Inter',sans-serif;
   }
   .expand-link{background:none;border:none;color:var(--db-blue);font-size:12px;font-weight:600;cursor:pointer;padding:4px 0;margin-bottom:6px;}
+
+  .inline-row{display:grid;grid-template-columns:2.2fr 1fr 1fr 0.9fr 0.7fr 1fr;gap:10px;align-items:end;margin-bottom:4px;}
+  @media(max-width:1100px){.inline-row{grid-template-columns:1fr 1fr;}}
+  .inline-row .fld label{display:block;font-size:10.5px;font-weight:600;color:var(--db-sub);margin-bottom:5px;}
+  .inline-row .fld input, .inline-row .fld select{
+    width:100%;padding:8px 9px;border:1px solid var(--db-border);border-radius:6px;font-size:12.5px;color:var(--db-text);font-family:'Inter',sans-serif;
+  }
+  .time-pair{display:flex;gap:5px;}
+
+  .photo-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border:1px dashed #B9CBEA;border-radius:6px;font-size:12.5px;font-weight:600;color:var(--db-blue);cursor:pointer;background:#F3F7FE;}
+  .photo-preview-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+  .photo-thumb{position:relative;width:66px;height:66px;border-radius:6px;overflow:hidden;border:1px solid var(--db-border);flex-shrink:0;}
+  .photo-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-thumb.existing{border-color:var(--db-blue);}
+  .photo-thumb .rm{position:absolute;top:2px;right:2px;width:17px;height:17px;background:rgba(0,0,0,0.6);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;line-height:1;}
 
   .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
   @media(max-width:900px){.stat-row{grid-template-columns:1fr 1fr;}}
@@ -401,6 +418,7 @@
       <button id="hamburger" onclick="toggleSidebar()"><i class="ti ti-menu-2"></i></button>
       <div class="topbar-search"><i class="ti ti-search"></i><input placeholder="Tìm kiếm công việc, toà nhà..." id="searchBox" oninput="renderTable()"></div>
       <div class="topbar-right">
+        <i class="ti ti-file-type-pdf" onclick="exportListPDF()" title="Xuất danh sách hiện tại ra PDF"></i>
         <i class="ti ti-bell"></i>
         <div class="avatar-chip" id="avatarChip">--</div>
         <div class="who-box"><span class="name" id="whoName"></span><span class="role" id="whoRole"></span></div>
@@ -435,32 +453,37 @@
         </div>
 
         <section class="db-card" id="quickAddCard">
-          <div class="quick-add-title" id="formTitle">Thêm công việc mới</div>
-          <div class="quick-row">
-            <div><label>Toà nhà / Dự án</label><input id="fBuilding" placeholder="vd: Toà nhà 198 NTMK"></div>
-            <div>
-              <label>Loại công việc</label>
+          <div class="quick-add-title" id="formTitle">Thêm công việc mới (nhập trực tiếp)</div>
+          <div class="inline-row">
+            <div class="fld"><label>Nội dung công việc *</label><input id="fWorkContentInline" placeholder="Vd: Kiểm tra hệ thống PCCC tầng B4..."></div>
+            <div class="fld"><label>Loại công việc</label>
               <select id="fCategory" onchange="toggleCategoryFields()">
                 <option>Báo cáo công việc hằng ngày</option>
                 <option>PCCC</option><option>MSB</option><option>ĐHKK</option>
                 <option>Thang máy</option><option>Bơm</option><option>Camera</option><option>Kết cấu</option>
               </select>
             </div>
-            <div><label>Ngày</label><input id="fDate" type="date"></div>
-            <div>
-              <label>Ưu tiên / Tình trạng</label>
+            <div class="fld"><label>Toà nhà</label><input id="fBuilding" placeholder="vd: 68 Phan Đăng Lưu"></div>
+            <div class="fld"><label>Thời gian</label>
+              <div class="time-pair"><input id="fDate" type="date"><input id="fTimeStart" type="time"></div>
+            </div>
+            <div class="fld"><label>Ưu tiên</label>
               <select id="fStatus">
-                <option value="Bình thường">Bình thường</option>
-                <option value="Cần theo dõi">Cần theo dõi</option>
-                <option value="Sự cố / Hư hỏng">Sự cố / Hư hỏng</option>
+                <option value="Bình thường">Trung bình</option>
+                <option value="Cần theo dõi">Cao</option>
+                <option value="Sự cố / Hư hỏng">Cấp bách</option>
               </select>
             </div>
+            <div class="fld">
+              <label>&nbsp;</label>
+              <label class="photo-btn" for="fPhotos" style="width:100%;justify-content:center;box-sizing:border-box;"><i class="ti ti-camera"></i> Thêm ảnh</label>
+              <input type="file" id="fPhotos" accept="image/*" capture="environment" multiple style="display:none;" onchange="handlePhotoSelect(event)">
+            </div>
           </div>
+          <div id="photoPreview" class="photo-preview-strip"></div>
 
+          <button type="button" class="expand-link" onclick="toggleDailyExtra()" id="dailyExtraToggle" style="margin-top:8px;">+ Thêm chi tiết (ca làm việc, khu vực, giờ kết thúc, vật tư, sự cố, đề xuất...)</button>
           <div id="dailyFields">
-            <label>Nội dung công việc thực hiện</label>
-            <textarea id="fWorkContent" placeholder="Mô tả chi tiết công việc đã thực hiện trong ca..."></textarea>
-            <button type="button" class="expand-link" onclick="toggleDailyExtra()" id="dailyExtraToggle">+ Thêm chi tiết (ca làm việc, giờ, vật tư, sự cố, đề xuất...)</button>
             <div id="dailyExtra" class="hidden">
               <div class="row2">
                 <div><label>Ca làm việc</label>
@@ -468,10 +491,8 @@
                 </div>
                 <div><label>Khu vực / Vị trí</label><input id="fArea" placeholder="vd: Tầng hầm B1"></div>
               </div>
-              <div class="row2">
-                <div><label>Giờ bắt đầu</label><input id="fTimeStart" type="time"></div>
-                <div><label>Giờ kết thúc</label><input id="fTimeEnd" type="time"></div>
-              </div>
+              <label>Giờ kết thúc</label>
+              <input id="fTimeEnd" type="time" style="max-width:160px;">
               <label>Tình trạng trước khi thực hiện</label>
               <textarea id="fBefore" placeholder="Hiện trạng ghi nhận ban đầu"></textarea>
               <label>Kết quả / Tình trạng sau khi thực hiện</label>
@@ -485,9 +506,9 @@
             </div>
           </div>
 
-          <div id="simpleFields">
-            <label>Nội dung công việc / Ghi chú</label>
-            <textarea id="fNote" placeholder="Mô tả công việc đã làm, tình trạng thiết bị, đề xuất..."></textarea>
+          <div id="simpleFields" class="hidden">
+            <label>Ghi chú thêm (không bắt buộc)</label>
+            <textarea id="fNote" placeholder="Ghi chú bổ sung ngoài nội dung công việc ở trên..."></textarea>
           </div>
 
           <label>Người thực hiện</label>
@@ -729,56 +750,133 @@ async function removeUser(name){
   }catch(e){ showMsg(msg, e.message, false); }
 }
 
+// ---------- Ảnh đính kèm ----------
+let selectedPhotos = [];   // {file, url} - ảnh mới chọn, chưa upload
+let existingPhotos = [];   // url ảnh đã có (khi sửa báo cáo)
+
+function handlePhotoSelect(e){
+  const files = Array.from(e.target.files || []);
+  files.forEach(f => selectedPhotos.push({ file: f, url: URL.createObjectURL(f) }));
+  e.target.value = '';
+  renderPhotoPreview();
+}
+function removeNewPhoto(idx){ selectedPhotos.splice(idx,1); renderPhotoPreview(); }
+function removeExistingPhoto(idx){ existingPhotos.splice(idx,1); renderPhotoPreview(); }
+function renderPhotoPreview(){
+  const area = document.getElementById('photoPreview');
+  let html = '';
+  existingPhotos.forEach((url,i) => { html += `<div class="photo-thumb existing"><img src="${url}"><div class="rm" onclick="removeExistingPhoto(${i})">✕</div></div>`; });
+  selectedPhotos.forEach((p,i) => { html += `<div class="photo-thumb"><img src="${p.url}"><div class="rm" onclick="removeNewPhoto(${i})">✕</div></div>`; });
+  area.innerHTML = html;
+}
+function resetPhotoState(){ selectedPhotos = []; existingPhotos = []; renderPhotoPreview(); }
+
+function compressImage(file, maxW, quality){
+  maxW = maxW || 1600; quality = quality || 0.75;
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = reject;
+    reader.onload = e => {
+      const img = new Image();
+      img.onerror = reject;
+      img.onload = () => {
+        let w = img.width, h = img.height;
+        if(w > maxW){ h = Math.round(h * maxW / w); w = maxW; }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        canvas.toBlob(blob => resolve(blob), 'image/jpeg', quality);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+function blobToBase64(blob){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+async function uploadPhoto(basePath, index, file){
+  const compressed = await compressImage(file);
+  const base64 = await blobToBase64(compressed);
+  const filePath = `data/photos/${basePath}_${index}.jpg`;
+  const res = await fetch(`${API}/contents/${filePath}`, {
+    method: 'PUT', headers: ghHeaders(session.token),
+    body: JSON.stringify({ message: `Ảnh đính kèm: ${basePath}`, content: base64 })
+  });
+  if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.message || 'Tải ảnh lên thất bại.'); }
+  const data = await res.json();
+  return data.content.download_url;
+}
+
 // ---------- Reports ----------
 async function submitReport(){
   const building = document.getElementById('fBuilding').value.trim();
   const date = document.getElementById('fDate').value;
   const category = document.getElementById('fCategory').value;
   const status = document.getElementById('fStatus').value;
+  const workContent = document.getElementById('fWorkContentInline').value.trim();
   const isDaily = category === DAILY_CATEGORY;
   const msg = document.getElementById('submitMsg');
   const btn = document.getElementById('submitBtn');
 
-  let record = { toa_nha: building, ngay: date, hang_muc: category, tinh_trang: status };
+  if(!building || !date || !workContent){ showMsg(msg, 'Vui lòng nhập Toà nhà, Ngày và Nội dung công việc.', false); return; }
+
+  let record = { toa_nha: building, ngay: date, hang_muc: category, tinh_trang: status, gio: document.getElementById('fTimeStart').value };
 
   if(isDaily){
-    const workContent = document.getElementById('fWorkContent').value.trim();
-    if(!building || !date || !workContent){ showMsg(msg, 'Vui lòng nhập Toà nhà/Dự án, Ngày và Nội dung công việc thực hiện.', false); return; }
+    record.noi_dung_cong_viec = workContent;
     record.ca_lam_viec = document.getElementById('fShift').value;
     record.khu_vuc = document.getElementById('fArea').value.trim();
     record.gio_bat_dau = document.getElementById('fTimeStart').value;
     record.gio_ket_thuc = document.getElementById('fTimeEnd').value;
-    record.noi_dung_cong_viec = workContent;
     record.tinh_trang_truoc = document.getElementById('fBefore').value.trim();
     record.ket_qua_sau = document.getElementById('fAfter').value.trim();
     record.vat_tu_su_dung = document.getElementById('fMaterials').value.trim();
     record.su_co_phat_sinh = document.getElementById('fIncident').value.trim();
     record.de_xuat = document.getElementById('fRecommend').value.trim();
   }else{
-    const note = document.getElementById('fNote').value.trim();
-    if(!building || !date || !note){ showMsg(msg, 'Vui lòng nhập Toà nhà/Dự án, Ngày và Nội dung.', false); return; }
-    record.noi_dung = note;
+    record.noi_dung = workContent;
+    record.ghi_chu = document.getElementById('fNote').value.trim();
   }
 
-  btn.disabled = true; btn.textContent = editing ? 'Đang cập nhật...' : 'Đang gửi...';
+  btn.disabled = true; btn.textContent = editing ? 'Đang cập nhật...' : 'Đang lưu...';
 
   record.nguoi_nhap = editing ? editing.original_nguoi_nhap : session.login;
   record.thoi_gian_gui = editing ? editing.original_time : new Date().toISOString();
   if(editing){ record.sua_boi = session.login; record.thoi_gian_sua = new Date().toISOString(); }
 
-  const content = b64encode(JSON.stringify(record, null, 2));
-
   try{
-    let path, body;
+    let path;
     if(editing){
       path = editing.path;
-      body = { message: `Cập nhật báo cáo: ${category} - ${building} (${date})`, content, sha: editing.sha };
     }else{
       const now = new Date();
       const timePart = now.toTimeString().slice(0,8).replace(/:/g,'');
       path = `data/${date}_${timePart}_${slug(building)}_${slug(category)}.json`;
-      body = { message: `Báo cáo: ${category} - ${building} (${date})`, content };
     }
+    const basePath = path.replace('data/','').replace('.json','');
+
+    // Upload ảnh mới (nếu có), nén trước khi gửi lên GitHub
+    let newPhotoUrls = [];
+    if(selectedPhotos.length > 0){
+      showMsg(msg, `Đang tải ${selectedPhotos.length} ảnh lên...`, true);
+      for(let i = 0; i < selectedPhotos.length; i++){
+        const url = await uploadPhoto(basePath, existingPhotos.length + i, selectedPhotos[i].file);
+        newPhotoUrls.push(url);
+      }
+    }
+    record.anh_dinh_kem = existingPhotos.concat(newPhotoUrls);
+
+    const content = b64encode(JSON.stringify(record, null, 2));
+    const body = editing
+      ? { message: `Cập nhật báo cáo: ${category} - ${building} (${date})`, content, sha: editing.sha }
+      : { message: `Báo cáo: ${category} - ${building} (${date})`, content };
+
     const res = await fetch(`${API}/contents/${path}`, { method: 'PUT', headers: ghHeaders(session.token), body: JSON.stringify(body) });
     if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.message || 'Gửi báo cáo thất bại.'); }
     const resData = await res.json();
@@ -787,7 +885,8 @@ async function submitReport(){
       path, sha: resData.content.sha,
       toa_nha: record.toa_nha, ngay: record.ngay, hang_muc: record.hang_muc, tinh_trang: record.tinh_trang,
       nguoi_nhap: record.nguoi_nhap, thoi_gian_gui: record.thoi_gian_gui,
-      noi_dung_ngan: (isDaily ? record.noi_dung_cong_viec : record.noi_dung || '').slice(0,90)
+      noi_dung_ngan: (isDaily ? record.noi_dung_cong_viec : record.noi_dung || '').slice(0,90),
+      co_anh: record.anh_dinh_kem.length > 0
     };
     reportIndex.list = reportIndex.list.filter(e => e.path !== path);
     reportIndex.list.push(indexEntry);
@@ -795,7 +894,8 @@ async function submitReport(){
 
     showMsg(msg, editing ? 'Đã cập nhật báo cáo.' : 'Đã lưu báo cáo thành công.', true);
     cancelEdit();
-    ['fNote','fWorkContent','fBefore','fAfter','fMaterials','fIncident','fRecommend','fArea'].forEach(id => { document.getElementById(id).value = ''; });
+    ['fWorkContentInline','fNote','fBefore','fAfter','fMaterials','fIncident','fRecommend','fArea'].forEach(id => { document.getElementById(id).value = ''; });
+    resetPhotoState();
     renderTable();
     renderToday();
   }catch(e){
@@ -807,10 +907,11 @@ async function submitReport(){
 
 function cancelEdit(){
   editing = null;
-  document.getElementById('formTitle').textContent = 'Nhập báo cáo mới';
-  document.getElementById('submitBtn').textContent = 'Gửi báo cáo';
+  document.getElementById('formTitle').textContent = 'Thêm công việc mới (nhập trực tiếp)';
+  document.getElementById('submitBtn').textContent = 'Lưu';
   document.getElementById('cancelEditBtn').classList.add('hidden');
   document.getElementById('fReporter').value = session.login;
+  resetPhotoState();
 }
 
 async function editReport(path, sha){
@@ -823,22 +924,26 @@ async function editReport(path, sha){
     document.getElementById('fDate').value = rec.ngay || '';
     document.getElementById('fCategory').value = rec.hang_muc || '';
     document.getElementById('fStatus').value = rec.tinh_trang || 'Bình thường';
+    document.getElementById('fTimeStart').value = rec.gio_bat_dau || rec.gio || '';
     toggleCategoryFields();
     if(rec.hang_muc === DAILY_CATEGORY){
+      document.getElementById('fWorkContentInline').value = rec.noi_dung_cong_viec || '';
       document.getElementById('fShift').value = rec.ca_lam_viec || 'Hành chính';
       document.getElementById('fArea').value = rec.khu_vuc || '';
-      document.getElementById('fTimeStart').value = rec.gio_bat_dau || '';
       document.getElementById('fTimeEnd').value = rec.gio_ket_thuc || '';
-      document.getElementById('fWorkContent').value = rec.noi_dung_cong_viec || '';
       document.getElementById('fBefore').value = rec.tinh_trang_truoc || '';
       document.getElementById('fAfter').value = rec.ket_qua_sau || '';
       document.getElementById('fMaterials').value = rec.vat_tu_su_dung || '';
       document.getElementById('fIncident').value = rec.su_co_phat_sinh || '';
       document.getElementById('fRecommend').value = rec.de_xuat || '';
     }else{
-      document.getElementById('fNote').value = rec.noi_dung || '';
+      document.getElementById('fWorkContentInline').value = rec.noi_dung || '';
+      document.getElementById('fNote').value = rec.ghi_chu || '';
     }
     document.getElementById('fReporter').value = rec.nguoi_nhap || '';
+    existingPhotos = (rec.anh_dinh_kem || []).slice();
+    selectedPhotos = [];
+    renderPhotoPreview();
     editing = { path, sha: data.sha, original_nguoi_nhap: rec.nguoi_nhap, original_time: rec.thoi_gian_gui };
     document.getElementById('formTitle').textContent = 'Sửa báo cáo';
     document.getElementById('submitBtn').textContent = 'Cập nhật báo cáo';
@@ -878,7 +983,15 @@ function buildPrintHTML(rec, filename){
     sections += fieldBlock('Sự cố phát sinh', rec.su_co_phat_sinh);
     sections += fieldBlock('Đề xuất / kiến nghị', rec.de_xuat);
   }else{
-    sections += fieldBlock('Nội dung công việc / Ghi chú', rec.noi_dung);
+    sections += fieldBlock('Nội dung công việc', rec.noi_dung);
+    sections += fieldBlock('Ghi chú thêm', rec.ghi_chu);
+  }
+
+  let photosHtml = '';
+  if(rec.anh_dinh_kem && rec.anh_dinh_kem.length){
+    photosHtml = `<div class="pdf-section"><h4>Hình ảnh đính kèm</h4><div style="display:flex;flex-wrap:wrap;gap:8px;">` +
+      rec.anh_dinh_kem.map(u => `<img src="${u}" style="width:140px;height:140px;object-fit:cover;border:1px solid #ddd;border-radius:4px;">`).join('') +
+      `</div></div>`;
   }
 
   return `
@@ -892,6 +1005,7 @@ function buildPrintHTML(rec, filename){
     <div class="pdf-meta">Mã báo cáo: ${escapeHtml(filename)} &nbsp;·&nbsp; Ngày xuất: ${genDate}</div>
     <table class="pdf-info">${infoRows}</table>
     ${sections}
+    ${photosHtml}
     <div class="pdf-sign">
       <div><div class="line">Người lập báo cáo<br>(Ký, ghi rõ họ tên)</div></div>
       <div><div class="line">Người kiểm tra / duyệt<br>(Ký, ghi rõ họ tên)</div></div>
@@ -908,6 +1022,55 @@ async function exportPDF(path){
     document.getElementById('printArea').innerHTML = buildPrintHTML(rec, path.split('/').pop().replace('.json',''));
     window.print();
   }catch(e){ alert(e.message); }
+}
+
+function buildListPrintHTML(list, title){
+  const genDate = new Date().toLocaleString('vi-VN');
+  const rows = list.map((r,i) => `
+    <tr>
+      <td>${i+1}</td>
+      <td>${escapeHtml(r.ngay||'')}</td>
+      <td>${escapeHtml(r.noi_dung_ngan||'')}</td>
+      <td>${escapeHtml(r.toa_nha||'')}</td>
+      <td>${escapeHtml(r.hang_muc||'')}</td>
+      <td>${escapeHtml(r.tinh_trang||'')}</td>
+      <td>@${escapeHtml(r.nguoi_nhap||'')}</td>
+    </tr>`).join('');
+  return `
+    <div class="pdf-header">
+      <div class="pdf-mark">✱</div>
+      <div class="pdf-title">
+        <div class="co">ESTA PROPERTY MANAGEMENT</div>
+        <div class="doc">${escapeHtml(title)}</div>
+      </div>
+    </div>
+    <div class="pdf-meta">Tổng số: ${list.length} mục &nbsp;·&nbsp; Ngày xuất: ${genDate} &nbsp;·&nbsp; Người xuất: @${escapeHtml(session.login)}</div>
+    <table class="pdf-info" style="font-size:12px;">
+      <tr style="background:#F5F3EE;font-weight:700;">
+        <td>#</td><td>Ngày</td><td>Nội dung công việc</td><td>Toà nhà</td><td>Hạng mục</td><td>Trạng thái</td><td>Người thực hiện</td>
+      </tr>
+      ${rows}
+    </table>
+    <div class="pdf-footer">ESTA PROPERTY MANAGEMENT · A L'MAK COMPANY · HO CHI MINH CITY</div>
+  `;
+}
+
+function exportListPDF(){
+  if(!reportIndex.list){ alert('Chưa có dữ liệu để xuất.'); return; }
+  let list = filteredByView(reportIndex.list);
+  if(activeTab === 'ok') list = list.filter(r=>r.tinh_trang==='Bình thường');
+  else if(activeTab === 'watch') list = list.filter(r=>r.tinh_trang==='Cần theo dõi');
+  else if(activeTab === 'bad') list = list.filter(r=>r.tinh_trang==='Sự cố / Hư hỏng');
+  const q = (document.getElementById('searchBox').value || '').trim().toLowerCase();
+  if(q) list = list.filter(r => (r.toa_nha||'').toLowerCase().includes(q) || (r.noi_dung_ngan||'').toLowerCase().includes(q) || (r.hang_muc||'').toLowerCase().includes(q));
+  list = list.slice().sort((a,b) => (b.thoi_gian_gui||'').localeCompare(a.thoi_gian_gui||''));
+
+  if(list.length === 0){ alert('Không có báo cáo nào trong danh sách hiện tại để xuất.'); return; }
+
+  const titles = { cvhn: 'DANH SÁCH CÔNG VIỆC KỸ THUẬT', ht: 'DANH SÁCH HỆ THỐNG KỸ THUẬT', users: 'DANH SÁCH BÁO CÁO' };
+  const title = titles[currentView] || 'DANH SÁCH TẤT CẢ BÁO CÁO';
+  document.getElementById('printArea').innerHTML = buildListPrintHTML(list, title);
+  window.print();
 }
 
 async function deleteReport(path, sha, label){
@@ -1040,7 +1203,7 @@ function renderTable(){
   list.forEach((r,i) => {
     html += `<tr>
       <td>${i+1}</td><td>${r.ngay||''}</td>
-      <td style="max-width:240px;">${escapeHtml(r.noi_dung_ngan||'')}</td>
+      <td style="max-width:240px;">${escapeHtml(r.noi_dung_ngan||'')}${r.co_anh ? ' <i class="ti ti-photo" style="color:var(--db-blue);font-size:13px;" title="Có ảnh đính kèm"></i>' : ''}</td>
       <td>${escapeHtml(r.toa_nha||'')}</td><td>${escapeHtml(r.hang_muc||'')}</td>
       <td>${statusBadge(r.tinh_trang)}</td><td>@${escapeHtml(r.nguoi_nhap||'')}</td>
       <td><div class="row-actions">
