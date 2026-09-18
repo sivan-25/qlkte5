@@ -60,145 +60,100 @@
   .badge-role.admin{background:#FBF0DC;color:#9A6B15;}
   .badge-role.nhanvien{background:#E4F1EB;color:var(--green);}
 
-  /* ===== ESTA landing / login ===== */
+  /* ===== ESTA login screen (skyline / glass) ===== */
   :root{
     --esta-aubergine:#411437;
-    --esta-aubergine-dark:#2B1526;
-    --esta-cream:#F3DEBF;
-    --esta-cream-light:#F5ECD0;
     --esta-copper:#A46427;
-    --esta-taupe:#A99586;
-    --esta-stone:#625045;
-  }
-  #hero{
-    min-height:100vh;
-    background:linear-gradient(180deg,var(--esta-aubergine) 0%,var(--esta-aubergine-dark) 100%);
-    color:var(--esta-cream);
-    font-family:'Montserrat',sans-serif;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:64px 24px 48px;
-  }
-  .esta-mark{
-    width:64px;height:64px;
-    display:flex;align-items:center;justify-content:center;
-    border:1px solid rgba(243,222,191,0.35);
-    border-radius:4px;
-    margin-bottom:18px;
-    font-size:26px;
-    color:var(--esta-copper);
-  }
-  .esta-wordmark{
-    font-family:'Montserrat',sans-serif;
-    font-weight:800;
-    font-size:15px;
-    letter-spacing:0.38em;
-    margin:0 0 18px;
-    color:var(--esta-cream);
-  }
-  .esta-wordmark small{
-    display:block;
-    font-weight:300;
-    font-size:9px;
-    letter-spacing:0.28em;
-    color:var(--esta-taupe);
-    margin-top:6px;
-  }
-  .esta-rule{width:46px;height:2px;background:var(--esta-copper);margin:0 0 30px;}
-  #hero h2{
-    font-family:'Montserrat',sans-serif;
-    font-weight:300;
-    font-size:30px;
-    line-height:1.28;
-    margin:0 0 20px;
-    max-width:420px;
-  }
-  #hero h2 em{
-    font-style:italic;
-    font-weight:700;
-    color:var(--esta-copper);
-  }
-  #hero .lead{
-    font-family:'Montserrat',sans-serif;
-    font-weight:300;
-    font-size:14.5px;
-    line-height:1.7;
-    color:var(--esta-taupe);
-    max-width:340px;
-    margin:0 0 34px;
-  }
-  .esta-btn{
-    width:100%;max-width:320px;
-    font-family:'Montserrat',sans-serif;
-    font-weight:700;
-    font-size:13px;
-    letter-spacing:0.14em;
-    padding:16px;
-    border-radius:2px;
-    cursor:pointer;
-    margin-bottom:12px;
-  }
-  .esta-btn.fill{background:var(--esta-copper);border:1px solid var(--esta-copper);color:#fff;}
-  .esta-btn.outline{background:transparent;border:1px solid rgba(243,222,191,0.45);color:var(--esta-cream);}
-  #features{
-    background:var(--esta-cream-light);
-    padding:48px 24px 56px;
-    font-family:'Montserrat',sans-serif;
-  }
-  .feature-item{
-    max-width:420px;margin:0 auto 30px;
-    padding-bottom:26px;
-    border-bottom:1px solid rgba(65,20,55,0.15);
-  }
-  .feature-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
-  .feature-num{
-    color:var(--esta-copper);
-    font-size:12px;font-weight:700;letter-spacing:0.15em;
-    margin-bottom:8px;
-  }
-  .feature-item h3{
-    font-size:17px;font-weight:700;color:var(--esta-aubergine);margin:0 0 6px;
-  }
-  .feature-item p{font-size:13.5px;color:var(--esta-stone);margin:0;line-height:1.55;}
-  .esta-footer{
-    text-align:center;font-family:'Montserrat',sans-serif;font-weight:300;
-    font-size:10.5px;letter-spacing:0.2em;color:var(--esta-taupe);
-    padding:22px 16px 34px;background:var(--esta-cream-light);
   }
   #loginWrap{
+    position:relative;
     min-height:100vh;
-    background:var(--esta-cream);
-    display:flex;align-items:center;justify-content:center;
-    padding:24px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    font-family:'Montserrat',sans-serif;
+    background:linear-gradient(180deg,#0A1B33 0%,#173357 38%,#3E5E82 68%,#C68E68 100%);
+  }
+  #loginWrap .sky-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 25% 15%,rgba(255,255,255,0.10),transparent 55%);}
+  #loginWrap svg.skyline{position:absolute;bottom:0;left:0;width:100%;height:46%;display:block;}
+  .login-split{
+    position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;gap:48px;
+    padding:40px 28px;
+  }
+  .login-left{flex:1;color:#fff;display:none;}
+  @media(min-width:900px){.login-left{display:block;}}
+  .brand-row{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+  .brand-icon{width:56px;height:56px;flex-shrink:0;}
+  .brand-word{font-family:'Montserrat',sans-serif;font-weight:800;font-size:38px;letter-spacing:0.04em;color:#fff;}
+  .login-left h2{font-size:22px;font-weight:700;letter-spacing:0.06em;margin:0 0 8px;color:#fff;}
+  .login-left .tagline{font-size:14px;font-weight:300;font-style:italic;color:#C9D6E5;margin:0;}
+  .login-card{
+    width:100%;max-width:400px;margin:0 auto;
+    background:rgba(13,28,52,0.55);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:16px;
+    padding:36px 32px 30px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.35);
+    color:#fff;
+  }
+  .login-card .brand-row{justify-content:center;margin-bottom:14px;}
+  .login-card .brand-icon{width:44px;height:44px;}
+  .login-card .brand-word{font-size:26px;}
+  .login-card h2{text-align:center;font-size:14px;font-weight:700;letter-spacing:0.12em;color:#fff;margin:0 0 26px;}
+  .field-icon{position:relative;margin-bottom:14px;}
+  .field-icon svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:rgba(255,255,255,0.55);}
+  .field-icon input{
+    width:100%;padding:13px 14px 13px 40px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.22);
+    border-radius:8px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;
+  }
+  .field-icon input::placeholder{color:rgba(255,255,255,0.4);}
+  .field-icon input:focus{outline:none;border-color:#5AA0F2;background:rgba(255,255,255,0.09);}
+  .field-icon .eye-toggle{left:auto;right:13px;cursor:pointer;pointer-events:auto;}
+  #loginPass{padding-right:40px;}
+  .login-row{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;margin:2px 0 20px;color:#C9D6E5;}
+  .login-row label{display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12.5px;color:#C9D6E5;margin:0;text-transform:none;letter-spacing:0;font-weight:400;}
+  .login-row a{color:#6FB1FF;text-decoration:none;cursor:pointer;}
+  .login-row input[type=checkbox]{width:auto;padding:0;margin:0;accent-color:#2E7BE0;border:none;background:none;}
+  .esta-btn.login-submit{
+    width:100%;padding:14px;border:none;border-radius:8px;
+    background:linear-gradient(135deg,#2E7BE0,#1A5FC4);
+    color:#fff;font-weight:700;font-size:13px;letter-spacing:0.1em;cursor:pointer;
     font-family:'Montserrat',sans-serif;
   }
-  #loginWrap .login-card{
-    width:100%;max-width:380px;
-    background:#fff;
-    border:1px solid rgba(65,20,55,0.12);
-    padding:34px 28px;
+  #loginWrap .hint{color:#B7C4D6;font-size:11.5px;margin-top:12px;text-align:center;}
+  .login-foot{text-align:center;font-size:11px;color:rgba(255,255,255,0.55);margin-top:22px;letter-spacing:0.03em;}
+
+  /* ===== Report form field groups ===== */
+  .field-group{border-top:1px dashed var(--line);margin-top:16px;padding-top:14px;}
+  .field-group-title{font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--esta-copper,var(--amber));text-transform:uppercase;margin-bottom:2px;}
+
+  /* ===== Print / PDF export ===== */
+  #printArea{display:none;}
+  @media print{
+    body *{visibility:hidden;}
+    #printArea, #printArea *{visibility:visible;}
+    #printArea{display:block;position:absolute;top:0;left:0;width:100%;padding:0;}
   }
-  #loginWrap .esta-mark{color:var(--esta-copper);border-color:rgba(65,20,55,0.2);margin:0 auto 16px;}
-  #loginWrap .login-heading{
-    text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;
-    font-size:12px;letter-spacing:0.25em;color:var(--esta-aubergine);margin-bottom:4px;
-  }
-  #loginWrap .login-sub{
-    text-align:center;font-size:12px;color:var(--esta-stone);margin-bottom:26px;
-  }
-  #loginWrap label{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:0.08em;color:var(--esta-stone);text-transform:uppercase;}
-  #loginWrap input{border-radius:2px;border-color:rgba(65,20,55,0.2);}
-  #loginWrap input:focus{outline-color:var(--esta-copper);border-color:var(--esta-copper);}
-  #loginWrap .esta-btn{max-width:none;margin-top:22px;}
-  #loginWrap .hint{color:var(--esta-taupe);}
-  #loginWrap .back-link{
-    display:block;text-align:center;margin-top:18px;font-size:12px;
-    color:var(--esta-stone);text-decoration:underline;background:none;border:none;cursor:pointer;
-    font-family:'Montserrat',sans-serif;
-  }
+  .pdf-header{display:flex;align-items:center;gap:14px;border-bottom:3px solid var(--esta-aubergine,#411437);padding-bottom:14px;margin-bottom:18px;}
+  .pdf-mark{width:42px;height:42px;border:1px solid var(--esta-aubergine,#411437);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--esta-copper,#A46427);font-family:'Montserrat',sans-serif;flex-shrink:0;}
+  .pdf-title{font-family:'Montserrat',sans-serif;}
+  .pdf-title .co{font-size:11px;letter-spacing:0.3em;color:var(--esta-stone,#625045);font-weight:700;}
+  .pdf-title .doc{font-size:19px;font-weight:700;color:var(--esta-aubergine,#411437);margin-top:2px;}
+  .pdf-meta{font-family:'Montserrat',sans-serif;font-size:12px;color:var(--esta-stone,#625045);margin-bottom:16px;}
+  .pdf-info{width:100%;border-collapse:collapse;font-family:'Montserrat',sans-serif;font-size:13px;margin-bottom:18px;}
+  .pdf-info td{border:1px solid #ddd;padding:8px 10px;}
+  .pdf-info td.k{background:#F5F3EE;font-weight:600;width:34%;color:#444;}
+  .pdf-section{font-family:'Montserrat',sans-serif;margin-bottom:16px;}
+  .pdf-section h4{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--esta-copper,#A46427);border-bottom:1px solid #eee;padding-bottom:5px;margin:0 0 8px;}
+  .pdf-section p{font-size:13.5px;line-height:1.6;color:#222;margin:0;white-space:pre-wrap;}
+  .pdf-sign{display:flex;justify-content:space-between;margin-top:46px;font-family:'Montserrat',sans-serif;font-size:13px;text-align:center;}
+  .pdf-sign div{width:45%;}
+  .pdf-sign .line{margin-top:60px;border-top:1px solid #333;padding-top:6px;font-size:12px;color:#555;}
+  .pdf-footer{margin-top:34px;text-align:center;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;color:#999;border-top:1px solid #eee;padding-top:10px;}
 </style>
 </head>
 <body>
@@ -212,53 +167,100 @@
   </div>
 </header>
 
-<!-- HERO SPLASH -->
-<div id="landing">
-  <section id="hero">
-    <div class="esta-mark">✱</div>
-    <div class="esta-wordmark">ESTA<small>PROPERTY MANAGEMENT</small></div>
-    <div class="esta-rule"></div>
-    <h2>Hệ Thống <em>Quản Lý</em><br>Kỹ Thuật Vận Hành</h2>
-    <p class="lead">Nền tảng số hoá công tác báo cáo và quản lý vận hành kỹ thuật toà nhà — chuẩn hoá, minh bạch, chuyên nghiệp.</p>
-    <button class="esta-btn fill" onclick="showLogin()">ĐĂNG NHẬP</button>
-    <button class="esta-btn outline" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">TÌM HIỂU THÊM</button>
-  </section>
-
-  <section id="features">
-    <div class="feature-item">
-      <div class="feature-num">— 01</div>
-      <h3>Báo cáo kỹ thuật hằng ngày</h3>
-      <p>Ghi nhận công việc và tình trạng vận hành theo từng toà nhà, theo thời gian thực.</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-num">— 02</div>
-      <h3>Theo dõi 7 hệ thống trọng yếu</h3>
-      <p>PCCC, MSB, ĐHKK, thang máy, bơm, camera, kết cấu — quản lý tập trung trên một nền tảng.</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-num">— 03</div>
-      <h3>Phân quyền rõ ràng</h3>
-      <p>Admin toàn quyền xem, sửa, xoá và cấp quyền; nhân viên kỹ thuật nhập báo cáo theo đúng phạm vi.</p>
-    </div>
-  </section>
-
-  <div class="esta-footer">ESTA PROPERTY MANAGEMENT · A L'MAK COMPANY · HO CHI MINH CITY</div>
-</div>
-
 <!-- LOGIN SCREEN -->
-<div class="hidden" id="loginWrap">
-  <div class="login-card">
-    <div class="esta-mark">✱</div>
-    <div class="login-heading">ĐĂNG NHẬP HỆ THỐNG</div>
-    <div class="login-sub">Quản lý kỹ thuật vận hành</div>
-    <label>Tên đăng nhập (GitHub username)</label>
-    <input id="loginUser" placeholder="vd: sivan-25" autocomplete="username">
-    <label>Mật khẩu (Personal Access Token)</label>
-    <input id="loginPass" type="password" placeholder="github_pat_..." autocomplete="current-password">
-    <p class="hint">Nếu bạn là người đầu tiên đăng nhập vào hệ thống, tài khoản của bạn sẽ tự động được cấp quyền admin.</p>
-    <button class="esta-btn fill" onclick="login()">ĐĂNG NHẬP</button>
-    <div class="msg" id="loginMsg"></div>
-    <button class="back-link" onclick="backToHero()">← Quay lại</button>
+<div id="loginWrap">
+  <div class="sky-glow"></div>
+  <svg class="skyline" viewBox="0 0 1400 340" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="#0A1626" opacity="0.88">
+      <rect x="0" y="160" width="70" height="180"/>
+      <rect x="80" y="110" width="55" height="230"/>
+      <rect x="145" y="190" width="40" height="150"/>
+      <rect x="195" y="70" width="65" height="270"/>
+      <rect x="270" y="140" width="45" height="200"/>
+      <rect x="325" y="95" width="60" height="245"/>
+      <rect x="395" y="175" width="50" height="165"/>
+      <rect x="455" y="55" width="70" height="285"/>
+      <rect x="535" y="130" width="45" height="210"/>
+      <rect x="590" y="100" width="58" height="240"/>
+      <rect x="660" y="165" width="42" height="175"/>
+      <rect x="712" y="75" width="66" height="265"/>
+      <rect x="790" y="145" width="48" height="195"/>
+      <rect x="850" y="115" width="55" height="225"/>
+      <rect x="915" y="185" width="40" height="155"/>
+      <rect x="965" y="60" width="68" height="280"/>
+      <rect x="1045" y="135" width="46" height="205"/>
+      <rect x="1100" y="90" width="60" height="250"/>
+      <rect x="1170" y="170" width="44" height="170"/>
+      <rect x="1225" y="105" width="58" height="235"/>
+      <rect x="1295" y="150" width="46" height="190"/>
+      <rect x="1350" y="120" width="50" height="220"/>
+    </g>
+    <g fill="#F4C563" opacity="0.85">
+      <rect x="14" y="180" width="8" height="10"/><rect x="34" y="180" width="8" height="10"/><rect x="14" y="205" width="8" height="10"/><rect x="34" y="230" width="8" height="10"/>
+      <rect x="96" y="135" width="7" height="9"/><rect x="112" y="150" width="7" height="9"/><rect x="96" y="175" width="7" height="9"/><rect x="112" y="200" width="7" height="9"/><rect x="96" y="225" width="7" height="9"/>
+      <rect x="210" y="100" width="8" height="10"/><rect x="230" y="100" width="8" height="10"/><rect x="210" y="130" width="8" height="10"/><rect x="230" y="160" width="8" height="10"/><rect x="210" y="190" width="8" height="10"/><rect x="230" y="220" width="8" height="10"/>
+      <rect x="340" y="120" width="7" height="9"/><rect x="360" y="140" width="7" height="9"/><rect x="340" y="170" width="7" height="9"/><rect x="360" y="200" width="7" height="9"/>
+      <rect x="470" y="85" width="8" height="10"/><rect x="490" y="85" width="8" height="10"/><rect x="470" y="120" width="8" height="10"/><rect x="490" y="155" width="8" height="10"/><rect x="470" y="190" width="8" height="10"/><rect x="490" y="225" width="8" height="10"/>
+      <rect x="605" y="130" width="7" height="9"/><rect x="622" y="150" width="7" height="9"/><rect x="605" y="180" width="7" height="9"/><rect x="622" y="210" width="7" height="9"/>
+      <rect x="728" y="105" width="8" height="10"/><rect x="748" y="105" width="8" height="10"/><rect x="728" y="140" width="8" height="10"/><rect x="748" y="175" width="8" height="10"/><rect x="728" y="210" width="8" height="10"/>
+      <rect x="865" y="145" width="7" height="9"/><rect x="882" y="165" width="7" height="9"/><rect x="865" y="195" width="7" height="9"/>
+      <rect x="980" y="90" width="8" height="10"/><rect x="1000" y="90" width="8" height="10"/><rect x="980" y="125" width="8" height="10"/><rect x="1000" y="160" width="8" height="10"/><rect x="980" y="195" width="8" height="10"/>
+      <rect x="1115" y="120" width="7" height="9"/><rect x="1132" y="140" width="7" height="9"/><rect x="1115" y="170" width="7" height="9"/>
+      <rect x="1240" y="135" width="8" height="10"/><rect x="1258" y="155" width="8" height="10"/><rect x="1240" y="185" width="8" height="10"/>
+    </g>
+  </svg>
+
+  <div class="login-split">
+    <div class="login-left">
+      <div class="brand-row">
+        <svg class="brand-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <rect x="8" y="26" width="12" height="32" fill="#fff"/>
+          <rect x="22" y="14" width="14" height="44" fill="#fff"/>
+          <rect x="38" y="30" width="11" height="28" fill="#fff"/>
+          <rect x="27" y="20" width="4" height="4" fill="#173357"/>
+          <rect x="27" y="30" width="4" height="4" fill="#173357"/>
+          <rect x="27" y="40" width="4" height="4" fill="#173357"/>
+        </svg>
+        <span class="brand-word">ESTA</span>
+      </div>
+      <h2>QUẢN LÝ KỸ THUẬT TOÀ NHÀ</h2>
+      <p class="tagline">Smart Technical Operations &amp; Facility Management</p>
+    </div>
+
+    <div class="login-card">
+      <div class="brand-row">
+        <svg class="brand-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <rect x="8" y="26" width="12" height="32" fill="#fff"/>
+          <rect x="22" y="14" width="14" height="44" fill="#fff"/>
+          <rect x="38" y="30" width="11" height="28" fill="#fff"/>
+          <rect x="27" y="20" width="4" height="4" fill="#0D1C34"/>
+          <rect x="27" y="30" width="4" height="4" fill="#0D1C34"/>
+          <rect x="27" y="40" width="4" height="4" fill="#0D1C34"/>
+        </svg>
+        <span class="brand-word">ESTA</span>
+      </div>
+      <h2>QUẢN LÝ KỸ THUẬT TOÀ NHÀ</h2>
+
+      <div class="field-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        <input id="loginUser" placeholder="Tên đăng nhập" autocomplete="username">
+      </div>
+      <div class="field-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
+        <input id="loginPass" type="password" placeholder="Mật khẩu (Personal Access Token)" autocomplete="current-password">
+        <svg class="eye-toggle" onclick="togglePass()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+
+      <div class="login-row">
+        <label><input type="checkbox" id="rememberMe" checked style="width:auto;">Ghi nhớ đăng nhập</label>
+        <a onclick="alert('Mật khẩu ở đây là Personal Access Token của GitHub. Vào github.com/settings/tokens?type=beta để tạo token mới nếu bạn làm mất token cũ.')">Quên mật khẩu?</a>
+      </div>
+
+      <button class="esta-btn login-submit" onclick="login()">ĐĂNG NHẬP</button>
+      <div class="msg" id="loginMsg"></div>
+      <p class="hint">Người đầu tiên đăng nhập sẽ tự động được cấp quyền admin.</p>
+      <div class="login-foot">© 2026 ESTA Technical Building Management System</div>
+    </div>
   </div>
 </div>
 
@@ -290,7 +292,7 @@
       </div>
       <div>
         <label>Hạng mục</label>
-        <select id="fCategory">
+        <select id="fCategory" onchange="toggleCategoryFields()">
           <option>Báo cáo công việc hằng ngày</option>
           <option>PCCC</option>
           <option>MSB</option>
@@ -302,15 +304,75 @@
         </select>
       </div>
     </div>
-    <label>Tình trạng</label>
+
+    <!-- Trường mở rộng cho Công việc hằng ngày -->
+    <div id="dailyFields">
+      <div class="field-group">
+        <div class="field-group-title">Thông tin ca làm việc</div>
+      </div>
+      <div class="row2">
+        <div>
+          <label>Ca làm việc</label>
+          <select id="fShift">
+            <option>Hành chính</option>
+            <option>Ca sáng</option>
+            <option>Ca chiều</option>
+            <option>Ca tối</option>
+          </select>
+        </div>
+        <div>
+          <label>Khu vực / Vị trí</label>
+          <input id="fArea" placeholder="vd: Tầng hầm B1">
+        </div>
+      </div>
+      <div class="row2">
+        <div>
+          <label>Giờ bắt đầu</label>
+          <input id="fTimeStart" type="time">
+        </div>
+        <div>
+          <label>Giờ kết thúc</label>
+          <input id="fTimeEnd" type="time">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Nội dung thực hiện</div>
+      </div>
+      <label>Nội dung công việc thực hiện</label>
+      <textarea id="fWorkContent" placeholder="Mô tả chi tiết công việc đã thực hiện trong ca..."></textarea>
+      <label>Tình trạng trước khi thực hiện</label>
+      <textarea id="fBefore" placeholder="Hiện trạng ghi nhận ban đầu"></textarea>
+      <label>Kết quả / Tình trạng sau khi thực hiện</label>
+      <textarea id="fAfter" placeholder="Kết quả sau khi xử lý"></textarea>
+      <label>Vật tư / thiết bị sử dụng</label>
+      <textarea id="fMaterials" placeholder="vd: 2 bóng đèn LED, dầu bôi trơn..."></textarea>
+
+      <div class="field-group">
+        <div class="field-group-title">Sự cố & đề xuất</div>
+      </div>
+      <label>Sự cố phát sinh (nếu có)</label>
+      <textarea id="fIncident" placeholder="Mô tả sự cố phát sinh trong quá trình thực hiện (để trống nếu không có)"></textarea>
+      <label>Đề xuất / Kiến nghị</label>
+      <textarea id="fRecommend" placeholder="Đề xuất với ban quản lý / cấp trên (nếu có)"></textarea>
+    </div>
+
+    <!-- Trường đơn giản cho các hạng mục hệ thống -->
+    <div id="simpleFields">
+      <label>Nội dung công việc / Ghi chú</label>
+      <textarea id="fNote" placeholder="Mô tả công việc đã làm, tình trạng thiết bị, đề xuất..."></textarea>
+    </div>
+
+    <div class="field-group">
+      <div class="field-group-title">Tổng kết</div>
+    </div>
+    <label>Tình trạng tổng thể</label>
     <select id="fStatus">
       <option value="Bình thường">Bình thường</option>
       <option value="Cần theo dõi">Cần theo dõi</option>
       <option value="Sự cố / Hư hỏng">Sự cố / Hư hỏng</option>
     </select>
-    <label>Nội dung công việc / Ghi chú</label>
-    <textarea id="fNote" placeholder="Mô tả công việc đã làm, tình trạng thiết bị, đề xuất..."></textarea>
-    <label>Người nhập</label>
+    <label>Người thực hiện</label>
     <input id="fReporter" readonly>
     <button class="primary" id="submitBtn" onclick="submitReport()">Gửi báo cáo</button>
     <button class="secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">Huỷ sửa</button>
@@ -323,6 +385,8 @@
     <button class="secondary" onclick="loadRecent()">Làm mới danh sách</button>
   </section>
 </main>
+
+<div id="printArea"></div>
 
 <script>
 const OWNER = 'sivan-25';
@@ -339,6 +403,12 @@ function slug(s){
   return (s||'').toString().trim().toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
     .replace(/đ/g,'d').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'x';
+}
+const DAILY_CATEGORY = 'Báo cáo công việc hằng ngày';
+function toggleCategoryFields(){
+  const isDaily = document.getElementById('fCategory').value === DAILY_CATEGORY;
+  document.getElementById('dailyFields').classList.toggle('hidden', !isDaily);
+  document.getElementById('simpleFields').classList.toggle('hidden', isDaily);
 }
 function showMsg(el, text, ok){ el.textContent = text; el.className = 'msg ' + (ok?'ok':'err'); }
 function b64encode(str){ return btoa(unescape(encodeURIComponent(str))); }
@@ -409,19 +479,12 @@ async function resolveRole(login, token){
 
 function logout(){ localStorage.removeItem(LS_KEY); session = null; location.reload(); }
 
-function showLogin(){
-  document.getElementById('landing').classList.add('hidden');
-  document.getElementById('loginWrap').classList.remove('hidden');
-  window.scrollTo(0,0);
-}
-function backToHero(){
-  document.getElementById('loginWrap').classList.add('hidden');
-  document.getElementById('landing').classList.remove('hidden');
-  window.scrollTo(0,0);
+function togglePass(){
+  const inp = document.getElementById('loginPass');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
 }
 
 function enterApp(){
-  document.getElementById('landing').classList.add('hidden');
   document.getElementById('loginWrap').classList.add('hidden');
   document.getElementById('appHeader').classList.remove('hidden');
   document.getElementById('appArea').classList.remove('hidden');
@@ -430,6 +493,7 @@ function enterApp(){
     ' <span class="role-tag">' + (session.role === 'admin' ? 'ADMIN' : 'NHÂN VIÊN') + '</span>';
   document.getElementById('fReporter').value = session.login;
   document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
+  toggleCategoryFields();
   if(session.role === 'admin'){
     document.getElementById('userMgmtCard').classList.remove('hidden');
     loadUsers();
@@ -504,21 +568,37 @@ async function submitReport(){
   const date = document.getElementById('fDate').value;
   const category = document.getElementById('fCategory').value;
   const status = document.getElementById('fStatus').value;
-  const note = document.getElementById('fNote').value.trim();
+  const isDaily = category === DAILY_CATEGORY;
   const msg = document.getElementById('submitMsg');
   const btn = document.getElementById('submitBtn');
 
-  if(!building || !date || !note){ showMsg(msg, 'Vui lòng nhập Toà nhà/Dự án, Ngày và Nội dung.', false); return; }
+  let record = { toa_nha: building, ngay: date, hang_muc: category, tinh_trang: status };
+
+  if(isDaily){
+    const workContent = document.getElementById('fWorkContent').value.trim();
+    if(!building || !date || !workContent){ showMsg(msg, 'Vui lòng nhập Toà nhà/Dự án, Ngày và Nội dung công việc thực hiện.', false); return; }
+    record.ca_lam_viec = document.getElementById('fShift').value;
+    record.khu_vuc = document.getElementById('fArea').value.trim();
+    record.gio_bat_dau = document.getElementById('fTimeStart').value;
+    record.gio_ket_thuc = document.getElementById('fTimeEnd').value;
+    record.noi_dung_cong_viec = workContent;
+    record.tinh_trang_truoc = document.getElementById('fBefore').value.trim();
+    record.ket_qua_sau = document.getElementById('fAfter').value.trim();
+    record.vat_tu_su_dung = document.getElementById('fMaterials').value.trim();
+    record.su_co_phat_sinh = document.getElementById('fIncident').value.trim();
+    record.de_xuat = document.getElementById('fRecommend').value.trim();
+  }else{
+    const note = document.getElementById('fNote').value.trim();
+    if(!building || !date || !note){ showMsg(msg, 'Vui lòng nhập Toà nhà/Dự án, Ngày và Nội dung.', false); return; }
+    record.noi_dung = note;
+  }
 
   btn.disabled = true; btn.textContent = editing ? 'Đang cập nhật...' : 'Đang gửi...';
 
-  const record = {
-    toa_nha: building, ngay: date, hang_muc: category, tinh_trang: status, noi_dung: note,
-    nguoi_nhap: editing ? editing.original_nguoi_nhap : session.login,
-    thoi_gian_gui: editing ? editing.original_time : new Date().toISOString(),
-    sua_boi: editing ? session.login : undefined,
-    thoi_gian_sua: editing ? new Date().toISOString() : undefined
-  };
+  record.nguoi_nhap = editing ? editing.original_nguoi_nhap : session.login;
+  record.thoi_gian_gui = editing ? editing.original_time : new Date().toISOString();
+  if(editing){ record.sua_boi = session.login; record.thoi_gian_sua = new Date().toISOString(); }
+
   const content = b64encode(JSON.stringify(record, null, 2));
 
   try{
@@ -536,7 +616,7 @@ async function submitReport(){
     if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.message || 'Gửi báo cáo thất bại.'); }
     showMsg(msg, editing ? 'Đã cập nhật báo cáo.' : 'Đã lưu báo cáo thành công.', true);
     cancelEdit();
-    document.getElementById('fNote').value = '';
+    ['fNote','fWorkContent','fBefore','fAfter','fMaterials','fIncident','fRecommend','fArea'].forEach(id => { document.getElementById(id).value = ''; });
     loadRecent();
   }catch(e){
     showMsg(msg, e.message, false);
@@ -563,7 +643,21 @@ async function editReport(path, sha){
     document.getElementById('fDate').value = rec.ngay || '';
     document.getElementById('fCategory').value = rec.hang_muc || '';
     document.getElementById('fStatus').value = rec.tinh_trang || 'Bình thường';
-    document.getElementById('fNote').value = rec.noi_dung || '';
+    toggleCategoryFields();
+    if(rec.hang_muc === DAILY_CATEGORY){
+      document.getElementById('fShift').value = rec.ca_lam_viec || 'Hành chính';
+      document.getElementById('fArea').value = rec.khu_vuc || '';
+      document.getElementById('fTimeStart').value = rec.gio_bat_dau || '';
+      document.getElementById('fTimeEnd').value = rec.gio_ket_thuc || '';
+      document.getElementById('fWorkContent').value = rec.noi_dung_cong_viec || '';
+      document.getElementById('fBefore').value = rec.tinh_trang_truoc || '';
+      document.getElementById('fAfter').value = rec.ket_qua_sau || '';
+      document.getElementById('fMaterials').value = rec.vat_tu_su_dung || '';
+      document.getElementById('fIncident').value = rec.su_co_phat_sinh || '';
+      document.getElementById('fRecommend').value = rec.de_xuat || '';
+    }else{
+      document.getElementById('fNote').value = rec.noi_dung || '';
+    }
     document.getElementById('fReporter').value = rec.nguoi_nhap || '';
     editing = { path, sha: data.sha, original_nguoi_nhap: rec.nguoi_nhap, original_time: rec.thoi_gian_gui };
     document.getElementById('formTitle').textContent = 'Sửa báo cáo';
@@ -573,6 +667,67 @@ async function editReport(path, sha){
   }catch(e){
     alert(e.message);
   }
+}
+
+function fieldBlock(title, value){
+  if(!value) return '';
+  return `<div class="pdf-section"><h4>${title}</h4><p>${escapeHtml(value)}</p></div>`;
+}
+function escapeHtml(s){
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function buildPrintHTML(rec, filename){
+  const isDaily = rec.hang_muc === DAILY_CATEGORY;
+  const genDate = new Date().toLocaleString('vi-VN');
+  let infoRows = `
+    <tr><td class="k">Toà nhà / Dự án</td><td>${escapeHtml(rec.toa_nha||'')}</td><td class="k">Ngày</td><td>${escapeHtml(rec.ngay||'')}</td></tr>
+    <tr><td class="k">Hạng mục</td><td>${escapeHtml(rec.hang_muc||'')}</td><td class="k">Tình trạng tổng thể</td><td>${escapeHtml(rec.tinh_trang||'')}</td></tr>`;
+  if(isDaily){
+    infoRows += `
+    <tr><td class="k">Ca làm việc</td><td>${escapeHtml(rec.ca_lam_viec||'')}</td><td class="k">Khu vực / Vị trí</td><td>${escapeHtml(rec.khu_vuc||'')}</td></tr>
+    <tr><td class="k">Giờ bắt đầu</td><td>${escapeHtml(rec.gio_bat_dau||'')}</td><td class="k">Giờ kết thúc</td><td>${escapeHtml(rec.gio_ket_thuc||'')}</td></tr>`;
+  }
+  infoRows += `<tr><td class="k">Người thực hiện</td><td colspan="3">@${escapeHtml(rec.nguoi_nhap||'')}</td></tr>`;
+
+  let sections = '';
+  if(isDaily){
+    sections += fieldBlock('Nội dung công việc thực hiện', rec.noi_dung_cong_viec);
+    sections += fieldBlock('Tình trạng trước khi thực hiện', rec.tinh_trang_truoc);
+    sections += fieldBlock('Kết quả / Tình trạng sau khi thực hiện', rec.ket_qua_sau);
+    sections += fieldBlock('Vật tư / thiết bị sử dụng', rec.vat_tu_su_dung);
+    sections += fieldBlock('Sự cố phát sinh', rec.su_co_phat_sinh);
+    sections += fieldBlock('Đề xuất / kiến nghị', rec.de_xuat);
+  }else{
+    sections += fieldBlock('Nội dung công việc / Ghi chú', rec.noi_dung);
+  }
+
+  return `
+    <div class="pdf-header">
+      <div class="pdf-mark">✱</div>
+      <div class="pdf-title">
+        <div class="co">ESTA PROPERTY MANAGEMENT</div>
+        <div class="doc">BÁO CÁO KỸ THUẬT VẬN HÀNH</div>
+      </div>
+    </div>
+    <div class="pdf-meta">Mã báo cáo: ${escapeHtml(filename)} &nbsp;·&nbsp; Ngày xuất: ${genDate}</div>
+    <table class="pdf-info">${infoRows}</table>
+    ${sections}
+    <div class="pdf-sign">
+      <div><div class="line">Người lập báo cáo<br>(Ký, ghi rõ họ tên)</div></div>
+      <div><div class="line">Người kiểm tra / duyệt<br>(Ký, ghi rõ họ tên)</div></div>
+    </div>
+    <div class="pdf-footer">ESTA PROPERTY MANAGEMENT · A L'MAK COMPANY · HO CHI MINH CITY</div>
+  `;
+}
+async function exportPDF(path){
+  try{
+    const res = await fetch(`${API}/contents/${path}`, { headers: ghHeaders(session.token) });
+    if(!res.ok) throw new Error('Không tải được báo cáo để xuất PDF.');
+    const data = await res.json();
+    const rec = JSON.parse(b64decode(data.content));
+    document.getElementById('printArea').innerHTML = buildPrintHTML(rec, path.split('/').pop().replace('.json',''));
+    window.print();
+  }catch(e){ alert(e.message); }
 }
 
 async function deleteReport(path, sha, label){
@@ -599,13 +754,14 @@ async function loadRecent(){
     if(recentFiles.length === 0){ area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>'; return; }
 
     const isAdmin = session.role === 'admin';
-    let html = '<table><tr><th>Ngày</th><th>Toà nhà</th><th>Hạng mục</th><th></th>' + (isAdmin ? '<th></th><th></th>' : '') + '</tr>';
+    let html = '<table><tr><th>Ngày</th><th>Toà nhà</th><th>Hạng mục</th><th></th><th></th>' + (isAdmin ? '<th></th><th></th>' : '') + '</tr>';
     recentFiles.forEach(f => {
       const parts = f.name.replace('.json','').split('_');
       const date = parts[0] || '';
       const building = (parts[2] || '').replace(/-/g,' ');
       const category = (parts.slice(3).join('-') || '').replace(/-/g,' ');
       html += `<tr><td>${date}</td><td>${building}</td><td>${category}</td><td><a href="${f.html_url}" target="_blank">Xem</a></td>`;
+      html += `<td><button class="link-btn" onclick="exportPDF('${f.path}')">PDF</button></td>`;
       if(isAdmin){
         html += `<td><button class="link-btn" onclick="editReport('${f.path}','${f.sha}')">Sửa</button></td>`;
         html += `<td><button class="link-btn danger" onclick="deleteReport('${f.path}','${f.sha}','${building} - ${date}')">Xoá</button></td>`;
