@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Montserrat:wght@300;400;600;700;800&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/dist/tabler-icons.min.css">
 <style>
   :root{
     --navy:#0F2942;
@@ -131,6 +132,113 @@
   .field-group{border-top:1px dashed var(--line);margin-top:16px;padding-top:14px;}
   .field-group-title{font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--esta-copper,var(--amber));text-transform:uppercase;margin-bottom:2px;}
 
+  /* ===== Dashboard shell ===== */
+  :root{
+    --db-navy:#132A4C; --db-navy2:#0E2038; --db-blue:#2E7BE0; --db-bg:#F1F3F7;
+    --db-border:#E4E7ED; --db-text:#1E2A3A; --db-sub:#7C8797;
+  }
+  html,body{background:var(--db-bg);}
+  #appShell{display:flex;min-height:100vh;font-family:'Inter',sans-serif;}
+  #sidebar{
+    width:236px;flex-shrink:0;background:var(--db-navy);color:#D7DEE9;
+    display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;
+    transition:transform 0.2s ease;z-index:40;
+  }
+  .sidebar-brand{display:flex;align-items:center;gap:10px;padding:20px 18px;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .sidebar-brand svg{width:30px;height:30px;flex-shrink:0;}
+  .sidebar-brand-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#fff;line-height:1.15;}
+  .sidebar-brand-text small{display:block;font-weight:500;font-size:9px;letter-spacing:0.06em;color:#8FA2BC;margin-top:2px;}
+  .sidebar-nav{flex:1;padding:14px 10px;overflow-y:auto;}
+  .nav-link{
+    display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:6px;
+    font-size:13.5px;font-weight:500;color:#B9C4D4;cursor:pointer;margin-bottom:2px;
+    text-decoration:none;
+  }
+  .nav-link i{font-size:17px;flex-shrink:0;}
+  .nav-link .badge{margin-left:auto;background:#D64545;color:#fff;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:10px;}
+  .nav-link:hover{background:rgba(255,255,255,0.06);color:#fff;}
+  .nav-link.active{background:var(--db-blue);color:#fff;}
+  .sidebar-foot{padding:16px 18px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:10px;}
+  .sidebar-foot svg{width:26px;height:26px;flex-shrink:0;}
+  .sidebar-foot .txt{font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;color:#fff;line-height:1.3;}
+  .sidebar-foot .txt small{display:block;font-weight:400;font-size:9px;color:#8FA2BC;}
+  .sidebar-foot .ver{margin-left:auto;font-size:10px;color:#647692;}
+
+  #mainArea{flex:1;margin-left:236px;display:flex;flex-direction:column;min-height:100vh;}
+  #topbar{
+    height:58px;background:#fff;border-bottom:1px solid var(--db-border);
+    display:flex;align-items:center;gap:14px;padding:0 20px;position:sticky;top:0;z-index:30;
+  }
+  #hamburger{display:none;background:none;border:none;font-size:20px;color:var(--db-text);cursor:pointer;padding:4px;}
+  .topbar-search{flex:1;max-width:420px;position:relative;}
+  .topbar-search i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--db-sub);font-size:15px;}
+  .topbar-search input{width:100%;padding:8px 12px 8px 34px;border:1px solid var(--db-border);border-radius:6px;background:var(--db-bg);font-size:13px;}
+  .topbar-right{margin-left:auto;display:flex;align-items:center;gap:16px;}
+  .topbar-right i{font-size:18px;color:var(--db-sub);cursor:pointer;}
+  .avatar-chip{width:32px;height:32px;border-radius:50%;background:var(--db-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+  .who-box{display:flex;flex-direction:column;line-height:1.25;}
+  .who-box .name{font-size:12.5px;font-weight:600;color:var(--db-text);}
+  .who-box .role{font-size:10.5px;color:var(--db-sub);}
+  .topbar-right button.logout-x{background:none;border:none;color:var(--db-sub);font-size:16px;cursor:pointer;}
+
+  #pageContent{padding:22px 26px 50px;max-width:1360px;width:100%;margin:0 auto;}
+  .page-header-row{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+  .page-header-row h1{font-size:19px;font-weight:700;color:var(--db-text);margin:0 0 3px;}
+  .page-header-row p{font-size:12.5px;color:var(--db-sub);margin:0;}
+
+  .db-card{background:#fff;border:1px solid var(--db-border);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .quick-add-title{font-size:12.5px;font-weight:700;color:var(--db-text);margin-bottom:12px;}
+  .quick-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;margin-bottom:10px;}
+  @media(max-width:900px){.quick-row{grid-template-columns:1fr 1fr;}}
+  .quick-row label{display:block;font-size:11px;font-weight:600;color:var(--db-sub);margin-bottom:5px;text-transform:none;}
+  .quick-row input, .quick-row select, .quick-row textarea{
+    width:100%;padding:8px 10px;border:1px solid var(--db-border);border-radius:6px;font-size:13px;color:var(--db-text);font-family:'Inter',sans-serif;
+  }
+  .expand-link{background:none;border:none;color:var(--db-blue);font-size:12px;font-weight:600;cursor:pointer;padding:4px 0;margin-bottom:6px;}
+
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
+  @media(max-width:900px){.stat-row{grid-template-columns:1fr 1fr;}}
+  .stat-card{background:#fff;border:1px solid var(--db-border);border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px;}
+  .stat-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+  .stat-num{font-size:21px;font-weight:700;color:var(--db-text);line-height:1.1;}
+  .stat-label{font-size:11.5px;color:var(--db-sub);margin-top:2px;}
+
+  .content-split{display:flex;gap:16px;align-items:flex-start;}
+  .table-panel{flex:1;min-width:0;}
+  .today-panel{width:280px;flex-shrink:0;}
+  @media(max-width:960px){.content-split{flex-direction:column;}.today-panel{width:100%;}}
+
+  .tabs-row{display:flex;align-items:center;gap:4px;border-bottom:1px solid var(--db-border);margin:-18px -20px 14px;padding:0 20px;flex-wrap:wrap;}
+  .tab-item{padding:12px 14px;font-size:12.5px;font-weight:600;color:var(--db-sub);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;}
+  .tab-item.active{color:var(--db-blue);border-bottom-color:var(--db-blue);}
+
+  .db-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  .db-table th{text-align:left;padding:9px 8px;color:var(--db-sub);font-weight:600;font-size:11px;border-bottom:1px solid var(--db-border);white-space:nowrap;}
+  .db-table td{padding:10px 8px;border-bottom:1px solid var(--db-border);color:var(--db-text);vertical-align:middle;}
+  .db-table tr:last-child td{border-bottom:none;}
+  .status-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:12px;font-size:11px;font-weight:600;white-space:nowrap;}
+  .status-badge.ok{background:#E4F3E6;color:#1E7B34;}
+  .status-badge.watch{background:#FCEFD8;color:#9A6B15;}
+  .status-badge.bad{background:#FBE4E1;color:#C0392B;}
+  .row-actions{display:flex;gap:8px;}
+  .row-actions i{cursor:pointer;color:var(--db-sub);font-size:15px;}
+  .row-actions i:hover{color:var(--db-blue);}
+
+  .today-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--db-border);}
+  .today-item:last-child{border-bottom:none;}
+  .today-dot{width:8px;height:8px;border-radius:50%;background:var(--db-blue);margin-top:5px;flex-shrink:0;}
+  .today-time{font-size:11px;color:var(--db-sub);}
+  .today-title{font-size:12.5px;font-weight:600;color:var(--db-text);margin:2px 0;}
+  .today-loc{font-size:11px;color:var(--db-sub);}
+
+  @media(max-width:860px){
+    #sidebar{transform:translateX(-100%);}
+    #sidebar.open{transform:translateX(0);}
+    #mainArea{margin-left:0;}
+    #hamburger{display:block;}
+    .who-box{display:none;}
+  }
+
   /* ===== Print / PDF export ===== */
   #printArea{display:none;}
   @media print{
@@ -157,15 +265,6 @@
 </style>
 </head>
 <body>
-
-<header id="appHeader" class="hidden">
-  <h1>Quản lý kỹ thuật — QLKT5</h1>
-  <p>Nhập báo cáo & tình trạng hệ thống kỹ thuật</p>
-  <div class="userbar" id="userbar" style="display:none;">
-    <span id="whoami"></span>
-    <button onclick="logout()">Đăng xuất</button>
-  </div>
-</header>
 
 <!-- LOGIN SCREEN -->
 <div id="loginWrap">
@@ -264,127 +363,158 @@
   </div>
 </div>
 
-<main id="appArea" class="hidden">
-
-  <!-- ADMIN: quản lý người dùng -->
-  <section class="card hidden" id="userMgmtCard">
-    <div class="section-title">Quản lý người dùng</div>
-    <div id="userListArea"><p class="hint">Đang tải...</p></div>
-    <div class="adduser-row">
-      <input id="newUserName" placeholder="GitHub username nhân viên">
-      <select id="newUserRole">
-        <option value="nhanvien">Nhân viên</option>
-        <option value="admin">Admin</option>
-      </select>
-      <button class="small-add" onclick="addUser()">Thêm</button>
+<div id="appShell" class="hidden">
+  <aside id="sidebar">
+    <div class="sidebar-brand">
+      <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <rect x="8" y="26" width="12" height="32" fill="#fff"/>
+        <rect x="22" y="14" width="14" height="44" fill="#fff"/>
+        <rect x="38" y="30" width="11" height="28" fill="#fff"/>
+        <rect x="27" y="20" width="4" height="4" fill="#132A4C"/>
+        <rect x="27" y="30" width="4" height="4" fill="#132A4C"/>
+        <rect x="27" y="40" width="4" height="4" fill="#132A4C"/>
+      </svg>
+      <div class="sidebar-brand-text">ESTA<small>QUẢN LÝ KỸ THUẬT TOÀ NHÀ</small></div>
     </div>
-    <div class="msg" id="userMgmtMsg"></div>
-  </section>
+    <nav class="sidebar-nav">
+      <a class="nav-link active" id="navCvhn" onclick="switchView('cvhn',this)"><i class="ti ti-clipboard-list"></i>Công việc</a>
+      <a class="nav-link" id="navHt" onclick="switchView('ht',this)"><i class="ti ti-building-factory-2"></i>Hệ thống</a>
+      <a class="nav-link" id="navAll" onclick="switchView('all',this)"><i class="ti ti-list-details"></i>Tất cả báo cáo</a>
+      <a class="nav-link hidden" id="navUsers" onclick="switchView('users',this)"><i class="ti ti-users"></i>Quản lý người dùng</a>
+    </nav>
+    <div class="sidebar-foot">
+      <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <rect x="8" y="26" width="12" height="32" fill="#fff"/>
+        <rect x="22" y="14" width="14" height="44" fill="#fff"/>
+        <rect x="38" y="30" width="11" height="28" fill="#fff"/>
+        <rect x="27" y="20" width="4" height="4" fill="#132A4C"/>
+        <rect x="27" y="30" width="4" height="4" fill="#132A4C"/>
+        <rect x="27" y="40" width="4" height="4" fill="#132A4C"/>
+      </svg>
+      <div class="txt">ESTA<small>Smart Technical Operations &amp; Facility Management</small></div>
+      <div class="ver">v1.0.0</div>
+    </div>
+  </aside>
 
-  <section class="card">
-    <div class="section-title" id="formTitle">Nhập báo cáo mới</div>
-    <label>Toà nhà / Dự án</label>
-    <input id="fBuilding" placeholder="vd: Toà nhà 198 NTMK">
-    <div class="row2">
-      <div>
-        <label>Ngày</label>
-        <input id="fDate" type="date">
-      </div>
-      <div>
-        <label>Hạng mục</label>
-        <select id="fCategory" onchange="toggleCategoryFields()">
-          <option>Báo cáo công việc hằng ngày</option>
-          <option>PCCC</option>
-          <option>MSB</option>
-          <option>ĐHKK</option>
-          <option>Thang máy</option>
-          <option>Bơm</option>
-          <option>Camera</option>
-          <option>Kết cấu</option>
-        </select>
+  <div id="mainArea">
+    <div id="topbar">
+      <button id="hamburger" onclick="toggleSidebar()"><i class="ti ti-menu-2"></i></button>
+      <div class="topbar-search"><i class="ti ti-search"></i><input placeholder="Tìm kiếm công việc, toà nhà..." id="searchBox" oninput="renderTable()"></div>
+      <div class="topbar-right">
+        <i class="ti ti-bell"></i>
+        <div class="avatar-chip" id="avatarChip">--</div>
+        <div class="who-box"><span class="name" id="whoName"></span><span class="role" id="whoRole"></span></div>
+        <button class="logout-x" onclick="logout()" title="Đăng xuất"><i class="ti ti-logout"></i></button>
       </div>
     </div>
 
-    <!-- Trường mở rộng cho Công việc hằng ngày -->
-    <div id="dailyFields">
-      <div class="field-group">
-        <div class="field-group-title">Thông tin ca làm việc</div>
-      </div>
-      <div class="row2">
-        <div>
-          <label>Ca làm việc</label>
-          <select id="fShift">
-            <option>Hành chính</option>
-            <option>Ca sáng</option>
-            <option>Ca chiều</option>
-            <option>Ca tối</option>
+    <div id="pageContent">
+
+      <!-- ADMIN: quản lý người dùng -->
+      <section class="db-card hidden" id="userMgmtCard">
+        <div class="quick-add-title">Quản lý người dùng</div>
+        <div id="userListArea"><p class="hint">Đang tải...</p></div>
+        <div class="adduser-row">
+          <input id="newUserName" placeholder="GitHub username nhân viên">
+          <select id="newUserRole">
+            <option value="nhanvien">Nhân viên</option>
+            <option value="admin">Admin</option>
           </select>
+          <button class="small-add" onclick="addUser()">Thêm</button>
         </div>
-        <div>
-          <label>Khu vực / Vị trí</label>
-          <input id="fArea" placeholder="vd: Tầng hầm B1">
-        </div>
-      </div>
-      <div class="row2">
-        <div>
-          <label>Giờ bắt đầu</label>
-          <input id="fTimeStart" type="time">
-        </div>
-        <div>
-          <label>Giờ kết thúc</label>
-          <input id="fTimeEnd" type="time">
-        </div>
-      </div>
+        <div class="msg" id="userMgmtMsg"></div>
+        <button class="secondary" onclick="rebuildIndex()" style="margin-top:14px;">Đồng bộ lại chỉ mục báo cáo (quét toàn bộ dữ liệu)</button>
+      </section>
 
-      <div class="field-group">
-        <div class="field-group-title">Nội dung thực hiện</div>
-      </div>
-      <label>Nội dung công việc thực hiện</label>
-      <textarea id="fWorkContent" placeholder="Mô tả chi tiết công việc đã thực hiện trong ca..."></textarea>
-      <label>Tình trạng trước khi thực hiện</label>
-      <textarea id="fBefore" placeholder="Hiện trạng ghi nhận ban đầu"></textarea>
-      <label>Kết quả / Tình trạng sau khi thực hiện</label>
-      <textarea id="fAfter" placeholder="Kết quả sau khi xử lý"></textarea>
-      <label>Vật tư / thiết bị sử dụng</label>
-      <textarea id="fMaterials" placeholder="vd: 2 bóng đèn LED, dầu bôi trơn..."></textarea>
+      <div id="workView">
+        <div class="page-header-row">
+          <div>
+            <h1 id="pageTitle">Công việc kỹ thuật</h1>
+            <p id="pageSub">Ghi nhận và quản lý công việc kỹ thuật hằng ngày, nhanh chóng, thuận tiện.</p>
+          </div>
+        </div>
 
-      <div class="field-group">
-        <div class="field-group-title">Sự cố & đề xuất</div>
+        <section class="db-card" id="quickAddCard">
+          <div class="quick-add-title" id="formTitle">Thêm công việc mới</div>
+          <div class="quick-row">
+            <div><label>Toà nhà / Dự án</label><input id="fBuilding" placeholder="vd: Toà nhà 198 NTMK"></div>
+            <div>
+              <label>Loại công việc</label>
+              <select id="fCategory" onchange="toggleCategoryFields()">
+                <option>Báo cáo công việc hằng ngày</option>
+                <option>PCCC</option><option>MSB</option><option>ĐHKK</option>
+                <option>Thang máy</option><option>Bơm</option><option>Camera</option><option>Kết cấu</option>
+              </select>
+            </div>
+            <div><label>Ngày</label><input id="fDate" type="date"></div>
+            <div>
+              <label>Ưu tiên / Tình trạng</label>
+              <select id="fStatus">
+                <option value="Bình thường">Bình thường</option>
+                <option value="Cần theo dõi">Cần theo dõi</option>
+                <option value="Sự cố / Hư hỏng">Sự cố / Hư hỏng</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="dailyFields">
+            <label>Nội dung công việc thực hiện</label>
+            <textarea id="fWorkContent" placeholder="Mô tả chi tiết công việc đã thực hiện trong ca..."></textarea>
+            <button type="button" class="expand-link" onclick="toggleDailyExtra()" id="dailyExtraToggle">+ Thêm chi tiết (ca làm việc, giờ, vật tư, sự cố, đề xuất...)</button>
+            <div id="dailyExtra" class="hidden">
+              <div class="row2">
+                <div><label>Ca làm việc</label>
+                  <select id="fShift"><option>Hành chính</option><option>Ca sáng</option><option>Ca chiều</option><option>Ca tối</option></select>
+                </div>
+                <div><label>Khu vực / Vị trí</label><input id="fArea" placeholder="vd: Tầng hầm B1"></div>
+              </div>
+              <div class="row2">
+                <div><label>Giờ bắt đầu</label><input id="fTimeStart" type="time"></div>
+                <div><label>Giờ kết thúc</label><input id="fTimeEnd" type="time"></div>
+              </div>
+              <label>Tình trạng trước khi thực hiện</label>
+              <textarea id="fBefore" placeholder="Hiện trạng ghi nhận ban đầu"></textarea>
+              <label>Kết quả / Tình trạng sau khi thực hiện</label>
+              <textarea id="fAfter" placeholder="Kết quả sau khi xử lý"></textarea>
+              <label>Vật tư / thiết bị sử dụng</label>
+              <textarea id="fMaterials" placeholder="vd: 2 bóng đèn LED, dầu bôi trơn..."></textarea>
+              <label>Sự cố phát sinh (nếu có)</label>
+              <textarea id="fIncident" placeholder="Để trống nếu không có"></textarea>
+              <label>Đề xuất / Kiến nghị</label>
+              <textarea id="fRecommend" placeholder="Đề xuất với ban quản lý / cấp trên (nếu có)"></textarea>
+            </div>
+          </div>
+
+          <div id="simpleFields">
+            <label>Nội dung công việc / Ghi chú</label>
+            <textarea id="fNote" placeholder="Mô tả công việc đã làm, tình trạng thiết bị, đề xuất..."></textarea>
+          </div>
+
+          <label>Người thực hiện</label>
+          <input id="fReporter" readonly style="max-width:260px;">
+          <div style="margin-top:14px;">
+            <button class="esta-btn login-submit" id="submitBtn" onclick="submitReport()" style="width:auto;padding:11px 24px;display:inline-block;">Lưu</button>
+            <button class="secondary hidden" id="cancelEditBtn" onclick="cancelEdit()" style="width:auto;display:inline-block;padding:11px 20px;margin-left:8px;">Huỷ sửa</button>
+          </div>
+          <div class="msg" id="submitMsg"></div>
+        </section>
+
+        <div class="stat-row" id="statRow"></div>
+
+        <div class="content-split">
+          <div class="table-panel db-card">
+            <div class="tabs-row" id="tabsRow"></div>
+            <div id="recentArea" style="overflow-x:auto;"><p class="hint">Đang tải...</p></div>
+          </div>
+          <div class="today-panel db-card">
+            <div class="quick-add-title">Lịch công việc hôm nay</div>
+            <div id="todayArea"><p class="hint">Đang tải...</p></div>
+          </div>
+        </div>
       </div>
-      <label>Sự cố phát sinh (nếu có)</label>
-      <textarea id="fIncident" placeholder="Mô tả sự cố phát sinh trong quá trình thực hiện (để trống nếu không có)"></textarea>
-      <label>Đề xuất / Kiến nghị</label>
-      <textarea id="fRecommend" placeholder="Đề xuất với ban quản lý / cấp trên (nếu có)"></textarea>
     </div>
-
-    <!-- Trường đơn giản cho các hạng mục hệ thống -->
-    <div id="simpleFields">
-      <label>Nội dung công việc / Ghi chú</label>
-      <textarea id="fNote" placeholder="Mô tả công việc đã làm, tình trạng thiết bị, đề xuất..."></textarea>
-    </div>
-
-    <div class="field-group">
-      <div class="field-group-title">Tổng kết</div>
-    </div>
-    <label>Tình trạng tổng thể</label>
-    <select id="fStatus">
-      <option value="Bình thường">Bình thường</option>
-      <option value="Cần theo dõi">Cần theo dõi</option>
-      <option value="Sự cố / Hư hỏng">Sự cố / Hư hỏng</option>
-    </select>
-    <label>Người thực hiện</label>
-    <input id="fReporter" readonly>
-    <button class="primary" id="submitBtn" onclick="submitReport()">Gửi báo cáo</button>
-    <button class="secondary hidden" id="cancelEditBtn" onclick="cancelEdit()">Huỷ sửa</button>
-    <div class="msg" id="submitMsg"></div>
-  </section>
-
-  <section class="card">
-    <div class="section-title">Báo cáo gần đây</div>
-    <div id="recentArea"><p class="hint">Đang tải...</p></div>
-    <button class="secondary" onclick="loadRecent()">Làm mới danh sách</button>
-  </section>
-</main>
+  </div>
+</div>
 
 <div id="printArea"></div>
 
@@ -398,6 +528,9 @@ let session = null;      // {login, token, role}
 let recentFiles = [];    // cache for admin edit/delete
 let editing = null;      // {path, sha, original_nguoi_nhap}
 let usersCache = { sha: null, list: [] };
+let reportIndex = { sha: null, list: [] }; // summary index: data/_index.json
+let currentView = 'cvhn';
+let activeTab = 'all';
 
 function slug(s){
   return (s||'').toString().trim().toLowerCase()
@@ -409,6 +542,41 @@ function toggleCategoryFields(){
   const isDaily = document.getElementById('fCategory').value === DAILY_CATEGORY;
   document.getElementById('dailyFields').classList.toggle('hidden', !isDaily);
   document.getElementById('simpleFields').classList.toggle('hidden', isDaily);
+}
+function toggleDailyExtra(){
+  const el = document.getElementById('dailyExtra');
+  const btn = document.getElementById('dailyExtraToggle');
+  const open = !el.classList.contains('hidden');
+  el.classList.toggle('hidden', open);
+  btn.textContent = open ? '+ Thêm chi tiết (ca làm việc, giờ, vật tư, sự cố, đề xuất...)' : '− Ẩn bớt chi tiết';
+}
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); }
+function switchView(view, el){
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  if(el) el.classList.add('active');
+  document.getElementById('sidebar').classList.remove('open');
+  const userCard = document.getElementById('userMgmtCard');
+  const workView = document.getElementById('workView');
+  currentView = view;
+  if(view === 'users'){
+    userCard.classList.remove('hidden');
+    workView.classList.add('hidden');
+  }else{
+    userCard.classList.add('hidden');
+    workView.classList.remove('hidden');
+    const titles = {
+      cvhn: ['Công việc kỹ thuật','Ghi nhận và quản lý công việc kỹ thuật hằng ngày, nhanh chóng, thuận tiện.'],
+      ht: ['Hệ thống kỹ thuật','Theo dõi tình trạng PCCC, MSB, ĐHKK, thang máy, bơm, camera, kết cấu.'],
+      all: ['Tất cả báo cáo','Toàn bộ báo cáo kỹ thuật đã ghi nhận trong hệ thống.']
+    };
+    document.getElementById('pageTitle').textContent = titles[view][0];
+    document.getElementById('pageSub').textContent = titles[view][1];
+    document.getElementById('quickAddCard').classList.toggle('hidden', view === 'all');
+    if(view === 'cvhn'){ document.getElementById('fCategory').value = DAILY_CATEGORY; toggleCategoryFields(); }
+    else if(view === 'ht'){ document.getElementById('fCategory').value = 'PCCC'; toggleCategoryFields(); }
+    activeTab = 'all';
+    renderTable();
+  }
 }
 function showMsg(el, text, ok){ el.textContent = text; el.className = 'msg ' + (ok?'ok':'err'); }
 function b64encode(str){ return btoa(unescape(encodeURIComponent(str))); }
@@ -486,19 +654,18 @@ function togglePass(){
 
 function enterApp(){
   document.getElementById('loginWrap').classList.add('hidden');
-  document.getElementById('appHeader').classList.remove('hidden');
-  document.getElementById('appArea').classList.remove('hidden');
-  document.getElementById('userbar').style.display = 'flex';
-  document.getElementById('whoami').innerHTML = '@' + session.login +
-    ' <span class="role-tag">' + (session.role === 'admin' ? 'ADMIN' : 'NHÂN VIÊN') + '</span>';
+  document.getElementById('appShell').classList.remove('hidden');
+  document.getElementById('avatarChip').textContent = session.login.slice(0,2).toUpperCase();
+  document.getElementById('whoName').textContent = session.login;
+  document.getElementById('whoRole').textContent = session.role === 'admin' ? 'Admin' : 'Nhân viên kỹ thuật';
   document.getElementById('fReporter').value = session.login;
   document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
   toggleCategoryFields();
   if(session.role === 'admin'){
-    document.getElementById('userMgmtCard').classList.remove('hidden');
+    document.getElementById('navUsers').classList.remove('hidden');
     loadUsers();
   }
-  loadRecent();
+  loadDashboard();
 }
 
 // ---------- User management (admin) ----------
@@ -614,14 +781,27 @@ async function submitReport(){
     }
     const res = await fetch(`${API}/contents/${path}`, { method: 'PUT', headers: ghHeaders(session.token), body: JSON.stringify(body) });
     if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.message || 'Gửi báo cáo thất bại.'); }
+    const resData = await res.json();
+
+    const indexEntry = {
+      path, sha: resData.content.sha,
+      toa_nha: record.toa_nha, ngay: record.ngay, hang_muc: record.hang_muc, tinh_trang: record.tinh_trang,
+      nguoi_nhap: record.nguoi_nhap, thoi_gian_gui: record.thoi_gian_gui,
+      noi_dung_ngan: (isDaily ? record.noi_dung_cong_viec : record.noi_dung || '').slice(0,90)
+    };
+    reportIndex.list = reportIndex.list.filter(e => e.path !== path);
+    reportIndex.list.push(indexEntry);
+    await saveIndex(`Cập nhật chỉ mục: ${category} - ${building}`);
+
     showMsg(msg, editing ? 'Đã cập nhật báo cáo.' : 'Đã lưu báo cáo thành công.', true);
     cancelEdit();
     ['fNote','fWorkContent','fBefore','fAfter','fMaterials','fIncident','fRecommend','fArea'].forEach(id => { document.getElementById(id).value = ''; });
-    loadRecent();
+    renderTable();
+    renderToday();
   }catch(e){
     showMsg(msg, e.message, false);
   }finally{
-    btn.disabled = false; btn.textContent = editing ? 'Cập nhật báo cáo' : 'Gửi báo cáo';
+    btn.disabled = false; btn.textContent = editing ? 'Cập nhật báo cáo' : 'Lưu';
   }
 }
 
@@ -738,41 +918,150 @@ async function deleteReport(path, sha, label){
       body: JSON.stringify({ message: `Xoá báo cáo: ${label}`, sha })
     });
     if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.message || 'Xoá thất bại.'); }
-    loadRecent();
+    reportIndex.list = reportIndex.list.filter(e => e.path !== path);
+    await saveIndex(`Xoá khỏi chỉ mục: ${label}`);
+    renderTable();
+    renderToday();
   }catch(e){ alert(e.message); }
 }
 
-async function loadRecent(){
+// ---------- Index (data/_index.json) & Dashboard rendering ----------
+async function loadIndex(){
+  const res = await fetch(`${API}/contents/data/_index.json`, { headers: ghHeaders(session.token) });
+  if(res.status === 404){ reportIndex = { sha: null, list: [] }; return; }
+  if(!res.ok) throw new Error('Không tải được chỉ mục báo cáo.');
+  const data = await res.json();
+  reportIndex.sha = data.sha;
+  reportIndex.list = JSON.parse(b64decode(data.content));
+}
+async function saveIndex(message){
+  const content = b64encode(JSON.stringify(reportIndex.list, null, 2));
+  const body = { message, content };
+  if(reportIndex.sha) body.sha = reportIndex.sha;
+  const res = await fetch(`${API}/contents/data/_index.json`, { method: 'PUT', headers: ghHeaders(session.token), body: JSON.stringify(body) });
+  if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.message || 'Lưu chỉ mục thất bại.'); }
+  const data = await res.json();
+  reportIndex.sha = data.content.sha;
+}
+async function rebuildIndex(){
+  if(!confirm('Quét lại toàn bộ báo cáo trong repo để dựng lại chỉ mục? Có thể mất chút thời gian nếu có nhiều báo cáo.')) return;
+  const msg = document.getElementById('userMgmtMsg');
+  showMsg(msg, 'Đang quét dữ liệu...', true);
+  try{
+    const res = await fetch(`${API}/contents/data`, { headers: ghHeaders(session.token) });
+    if(res.status === 404){
+      reportIndex.list = []; await saveIndex('Khởi tạo lại chỉ mục (trống)');
+      showMsg(msg, 'Không có báo cáo nào.', true); renderTable(); renderToday(); return;
+    }
+    if(!res.ok) throw new Error('Không đọc được thư mục data.');
+    const files = (await res.json()).filter(f => f.name.endsWith('.json') && f.name !== '_index.json');
+    const list = [];
+    for(const f of files){
+      const r = await fetch(`${API}/contents/${f.path}`, { headers: ghHeaders(session.token) });
+      if(!r.ok) continue;
+      const d = await r.json();
+      const rec = JSON.parse(b64decode(d.content));
+      list.push({
+        path: f.path, sha: d.sha,
+        toa_nha: rec.toa_nha, ngay: rec.ngay, hang_muc: rec.hang_muc, tinh_trang: rec.tinh_trang,
+        nguoi_nhap: rec.nguoi_nhap, thoi_gian_gui: rec.thoi_gian_gui,
+        noi_dung_ngan: (rec.hang_muc === DAILY_CATEGORY ? rec.noi_dung_cong_viec : rec.noi_dung || '').slice(0,90)
+      });
+    }
+    reportIndex.list = list;
+    await saveIndex('Đồng bộ lại chỉ mục báo cáo');
+    showMsg(msg, `Đã đồng bộ ${list.length} báo cáo.`, true);
+    renderTable(); renderToday();
+  }catch(e){ showMsg(msg, e.message, false); }
+}
+
+async function loadDashboard(){
   const area = document.getElementById('recentArea');
   area.innerHTML = '<p class="hint">Đang tải...</p>';
   try{
-    const res = await fetch(`${API}/contents/data`, { headers: ghHeaders(session.token) });
-    if(res.status === 404){ area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>'; return; }
-    if(!res.ok) throw new Error('Không tải được danh sách báo cáo.');
-    const files = await res.json();
-    recentFiles = files.filter(f => f.name.endsWith('.json')).sort((a,b) => b.name.localeCompare(a.name)).slice(0, 30);
-    if(recentFiles.length === 0){ area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>'; return; }
-
-    const isAdmin = session.role === 'admin';
-    let html = '<table><tr><th>Ngày</th><th>Toà nhà</th><th>Hạng mục</th><th></th><th></th>' + (isAdmin ? '<th></th><th></th>' : '') + '</tr>';
-    recentFiles.forEach(f => {
-      const parts = f.name.replace('.json','').split('_');
-      const date = parts[0] || '';
-      const building = (parts[2] || '').replace(/-/g,' ');
-      const category = (parts.slice(3).join('-') || '').replace(/-/g,' ');
-      html += `<tr><td>${date}</td><td>${building}</td><td>${category}</td><td><a href="${f.html_url}" target="_blank">Xem</a></td>`;
-      html += `<td><button class="link-btn" onclick="exportPDF('${f.path}')">PDF</button></td>`;
-      if(isAdmin){
-        html += `<td><button class="link-btn" onclick="editReport('${f.path}','${f.sha}')">Sửa</button></td>`;
-        html += `<td><button class="link-btn danger" onclick="deleteReport('${f.path}','${f.sha}','${building} - ${date}')">Xoá</button></td>`;
-      }
-      html += '</tr>';
-    });
-    html += '</table>';
-    area.innerHTML = html;
+    await loadIndex();
+    renderTable();
+    renderToday();
   }catch(e){
     area.innerHTML = '<p class="hint">' + e.message + '</p>';
   }
+}
+
+function filteredByView(list){
+  if(currentView === 'cvhn') return list.filter(r => r.hang_muc === DAILY_CATEGORY);
+  if(currentView === 'ht') return list.filter(r => r.hang_muc !== DAILY_CATEGORY);
+  return list;
+}
+function statusBadge(status){
+  if(status === 'Bình thường') return '<span class="status-badge ok"><i class="ti ti-circle-check"></i>Bình thường</span>';
+  if(status === 'Cần theo dõi') return '<span class="status-badge watch"><i class="ti ti-clock-exclamation"></i>Cần theo dõi</span>';
+  return '<span class="status-badge bad"><i class="ti ti-alert-triangle"></i>Sự cố</span>';
+}
+function renderStats(viewList){
+  const today = new Date().toISOString().slice(0,10);
+  const cards = [
+    { label:'Hôm nay', num: viewList.filter(r=>r.ngay===today).length, icon:'ti-calendar-event', bg:'#E7F0FE', color:'#2E7BE0' },
+    { label:'Bình thường', num: viewList.filter(r=>r.tinh_trang==='Bình thường').length, icon:'ti-circle-check', bg:'#E4F3E6', color:'#1E7B34' },
+    { label:'Cần theo dõi', num: viewList.filter(r=>r.tinh_trang==='Cần theo dõi').length, icon:'ti-clock-exclamation', bg:'#FCEFD8', color:'#9A6B15' },
+    { label:'Sự cố / Hư hỏng', num: viewList.filter(r=>r.tinh_trang==='Sự cố / Hư hỏng').length, icon:'ti-alert-triangle', bg:'#FBE4E1', color:'#C0392B' }
+  ];
+  document.getElementById('statRow').innerHTML = cards.map(c => `
+    <div class="stat-card"><div class="stat-icon" style="background:${c.bg};color:${c.color};"><i class="ti ${c.icon}"></i></div>
+    <div><div class="stat-num">${c.num}</div><div class="stat-label">${c.label}</div></div></div>`).join('');
+}
+function renderTabs(viewList){
+  const tabs = [
+    {id:'all', label:'Tất cả', count: viewList.length},
+    {id:'ok', label:'Bình thường', count: viewList.filter(r=>r.tinh_trang==='Bình thường').length},
+    {id:'watch', label:'Cần theo dõi', count: viewList.filter(r=>r.tinh_trang==='Cần theo dõi').length},
+    {id:'bad', label:'Sự cố', count: viewList.filter(r=>r.tinh_trang==='Sự cố / Hư hỏng').length}
+  ];
+  document.getElementById('tabsRow').innerHTML = tabs.map(t =>
+    `<div class="tab-item ${activeTab===t.id?'active':''}" onclick="setTab('${t.id}')">${t.label} (${t.count})</div>`).join('');
+}
+function setTab(id){ activeTab = id; renderTable(); }
+
+function renderTable(){
+  let viewList = filteredByView(reportIndex.list);
+  renderStats(viewList);
+  renderTabs(viewList);
+  let list = viewList;
+  if(activeTab === 'ok') list = list.filter(r=>r.tinh_trang==='Bình thường');
+  else if(activeTab === 'watch') list = list.filter(r=>r.tinh_trang==='Cần theo dõi');
+  else if(activeTab === 'bad') list = list.filter(r=>r.tinh_trang==='Sự cố / Hư hỏng');
+  const q = (document.getElementById('searchBox').value || '').trim().toLowerCase();
+  if(q) list = list.filter(r => (r.toa_nha||'').toLowerCase().includes(q) || (r.noi_dung_ngan||'').toLowerCase().includes(q) || (r.hang_muc||'').toLowerCase().includes(q));
+  list = list.slice().sort((a,b) => (b.thoi_gian_gui||'').localeCompare(a.thoi_gian_gui||''));
+
+  const area = document.getElementById('recentArea');
+  if(list.length === 0){ area.innerHTML = '<p class="hint">Chưa có báo cáo nào.</p>'; return; }
+  const isAdmin = session.role === 'admin';
+  let html = '<table class="db-table"><tr><th>#</th><th>Ngày</th><th>Nội dung</th><th>Toà nhà</th><th>Hạng mục</th><th>Trạng thái</th><th>Người thực hiện</th><th></th></tr>';
+  list.forEach((r,i) => {
+    html += `<tr>
+      <td>${i+1}</td><td>${r.ngay||''}</td>
+      <td style="max-width:240px;">${escapeHtml(r.noi_dung_ngan||'')}</td>
+      <td>${escapeHtml(r.toa_nha||'')}</td><td>${escapeHtml(r.hang_muc||'')}</td>
+      <td>${statusBadge(r.tinh_trang)}</td><td>@${escapeHtml(r.nguoi_nhap||'')}</td>
+      <td><div class="row-actions">
+        <i class="ti ti-file-type-pdf" title="Xuất PDF" onclick="exportPDF('${r.path}')"></i>
+        ${isAdmin ? `<i class="ti ti-pencil" title="Sửa" onclick="editReport('${r.path}','${r.sha}')"></i><i class="ti ti-trash" title="Xoá" onclick="deleteReport('${r.path}','${r.sha}','${escapeHtml(r.toa_nha||'')} - ${r.ngay||''}')"></i>` : ''}
+      </div></td></tr>`;
+  });
+  html += '</table>';
+  area.innerHTML = html;
+}
+function renderToday(){
+  const today = new Date().toISOString().slice(0,10);
+  const list = reportIndex.list.filter(r => r.ngay === today).sort((a,b)=>(a.thoi_gian_gui||'').localeCompare(b.thoi_gian_gui||''));
+  const area = document.getElementById('todayArea');
+  if(list.length === 0){ area.innerHTML = '<p class="hint">Chưa có công việc nào hôm nay.</p>'; return; }
+  area.innerHTML = list.map(r => `
+    <div class="today-item"><div class="today-dot"></div>
+      <div><div class="today-time">${(r.thoi_gian_gui||'').slice(11,16)}</div>
+      <div class="today-title">${escapeHtml(r.noi_dung_ngan || r.hang_muc || '')}</div>
+      <div class="today-loc">${escapeHtml(r.toa_nha||'')}</div></div>
+    </div>`).join('');
 }
 
 loadSession();
