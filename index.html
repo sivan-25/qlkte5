@@ -155,6 +155,8 @@
     text-decoration:none;
   }
   .nav-link i{font-size:17px;flex-shrink:0;}
+  .nav-num{width:20px;height:20px;border-radius:4px;background:rgba(255,255,255,0.08);color:#8FA2BC;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Montserrat',sans-serif;}
+  .nav-link.active .nav-num{background:rgba(255,255,255,0.25);color:#fff;}
   .nav-link .badge{margin-left:auto;background:#D64545;color:#fff;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:10px;}
   .nav-link:hover{background:rgba(255,255,255,0.06);color:#fff;}
   .nav-link.active{background:var(--db-blue);color:#fff;}
@@ -175,8 +177,14 @@
   .topbar-search input{width:100%;padding:8px 12px 8px 34px;border:1px solid var(--db-border);border-radius:6px;background:var(--db-bg);font-size:13px;}
   .topbar-right{margin-left:auto;display:flex;align-items:center;gap:16px;}
   .topbar-right i{font-size:18px;color:var(--db-sub);cursor:pointer;}
-  .topbar-right i.ti-file-type-pdf{color:#C0392B;font-size:19px;}
-  .topbar-right i.ti-file-type-pdf:hover{color:#96291F;}
+  .pdf-export-btn{
+    display:flex;align-items:center;gap:7px;
+    background:#fff;border:1px solid var(--db-border);border-radius:8px;
+    padding:8px 16px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;
+    color:var(--db-text);cursor:pointer;white-space:nowrap;
+  }
+  .pdf-export-btn i{font-size:15px;color:#C0392B;}
+  .pdf-export-btn:hover{background:#FBF2F1;border-color:#EBC7C1;}
   .avatar-chip{width:32px;height:32px;border-radius:50%;background:var(--db-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
   .who-box{display:flex;flex-direction:column;line-height:1.25;}
   .who-box .name{font-size:12.5px;font-weight:600;color:var(--db-text);}
@@ -254,6 +262,9 @@
     #mainArea{margin-left:0;}
     #hamburger{display:block;}
     .who-box{display:none;}
+    .pdf-export-btn span{display:none;}
+    .pdf-export-btn{padding:8px 10px;}
+    .topbar-search{max-width:150px;}
   }
 
   /* ===== Print / PDF export ===== */
@@ -394,10 +405,10 @@
       <div class="sidebar-brand-text">ESTA<small>QUẢN LÝ KỸ THUẬT TOÀ NHÀ</small></div>
     </div>
     <nav class="sidebar-nav">
-      <a class="nav-link active" id="navCvhn" onclick="switchView('cvhn',this)"><i class="ti ti-clipboard-list"></i>Công việc</a>
-      <a class="nav-link" id="navHt" onclick="switchView('ht',this)"><i class="ti ti-building-factory-2"></i>Hệ thống</a>
-      <a class="nav-link" id="navAll" onclick="switchView('all',this)"><i class="ti ti-list-details"></i>Tất cả báo cáo</a>
-      <a class="nav-link hidden" id="navUsers" onclick="switchView('users',this)"><i class="ti ti-users"></i>Quản lý người dùng</a>
+      <a class="nav-link active" id="navCvhn" onclick="switchView('cvhn',this)"><span class="nav-num">I</span><i class="ti ti-clipboard-list"></i>Công việc</a>
+      <a class="nav-link" id="navHt" onclick="switchView('ht',this)"><span class="nav-num">II</span><i class="ti ti-building-factory-2"></i>Hệ thống</a>
+      <a class="nav-link" id="navAll" onclick="switchView('all',this)"><span class="nav-num">III</span><i class="ti ti-list-details"></i>Tất cả báo cáo</a>
+      <a class="nav-link hidden" id="navUsers" onclick="switchView('users',this)"><span class="nav-num">IV</span><i class="ti ti-users"></i>Quản lý người dùng</a>
     </nav>
     <div class="sidebar-foot">
       <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
@@ -418,7 +429,7 @@
       <button id="hamburger" onclick="toggleSidebar()"><i class="ti ti-menu-2"></i></button>
       <div class="topbar-search"><i class="ti ti-search"></i><input placeholder="Tìm kiếm công việc, toà nhà..." id="searchBox" oninput="renderTable()"></div>
       <div class="topbar-right">
-        <i class="ti ti-file-type-pdf" onclick="exportListPDF()" title="Xuất danh sách hiện tại ra PDF"></i>
+        <button class="pdf-export-btn" onclick="exportListPDF()" title="Xuất danh sách hiện tại ra PDF"><i class="ti ti-download"></i> <span>Xuất PDF</span></button>
         <i class="ti ti-bell"></i>
         <div class="avatar-chip" id="avatarChip">--</div>
         <div class="who-box"><span class="name" id="whoName"></span><span class="role" id="whoRole"></span></div>
