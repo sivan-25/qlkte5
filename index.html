@@ -899,7 +899,8 @@ async function submitReport(){
       toa_nha: record.toa_nha, ngay: record.ngay, hang_muc: record.hang_muc, tinh_trang: record.tinh_trang,
       nguoi_nhap: record.nguoi_nhap, thoi_gian_gui: record.thoi_gian_gui,
       noi_dung_ngan: (isDaily ? record.noi_dung_cong_viec : record.noi_dung || '').slice(0,90),
-      co_anh: record.anh_dinh_kem.length > 0
+      co_anh: record.anh_dinh_kem.length > 0,
+      anh_daidien: record.anh_dinh_kem[0] || null
     };
     reportIndex.list = reportIndex.list.filter(e => e.path !== path);
     reportIndex.list.push(indexEntry);
@@ -1059,6 +1060,7 @@ function buildListPrintHTML(list, title){
   const rows = list.map((r,i) => `
     <tr>
       <td>${i+1}</td>
+      <td>${r.anh_daidien ? `<img src="${r.anh_daidien}" style="width:36px;height:36px;object-fit:cover;border-radius:3px;display:block;">` : ''}</td>
       <td>${escapeHtml(r.ngay||'')}</td>
       <td>${escapeHtml(r.noi_dung_ngan||'')}</td>
       <td>${escapeHtml(r.toa_nha||'')}</td>
@@ -1077,7 +1079,7 @@ function buildListPrintHTML(list, title){
     <div class="pdf-meta">Tổng số: ${list.length} mục &nbsp;·&nbsp; Ngày xuất: ${genDate} &nbsp;·&nbsp; Người xuất: @${escapeHtml(session.login)}</div>
     <table class="pdf-info" style="font-size:12px;">
       <tr style="background:#F5F3EE;font-weight:700;">
-        <td>#</td><td>Ngày</td><td>Nội dung công việc</td><td>Toà nhà</td><td>Hạng mục</td><td>Trạng thái</td><td>Người thực hiện</td>
+        <td>#</td><td>Ảnh</td><td>Ngày</td><td>Nội dung công việc</td><td>Toà nhà</td><td>Hạng mục</td><td>Trạng thái</td><td>Người thực hiện</td>
       </tr>
       ${rows}
     </table>
@@ -1099,8 +1101,9 @@ function exportListPDF(){
 
   const titles = { cvhn: 'DANH SÁCH CÔNG VIỆC KỸ THUẬT', ht: 'DANH SÁCH HỆ THỐNG KỸ THUẬT', users: 'DANH SÁCH BÁO CÁO' };
   const title = titles[currentView] || 'DANH SÁCH TẤT CẢ BÁO CÁO';
-  document.getElementById('printArea').innerHTML = buildListPrintHTML(list, title);
-  window.print();
+  const area = document.getElementById('printArea');
+  area.innerHTML = buildListPrintHTML(list, title);
+  waitForImages(area).then(() => window.print());
 }
 
 async function deleteReport(path, sha, label){
@@ -1158,7 +1161,9 @@ async function rebuildIndex(){
         path: f.path, sha: d.sha,
         toa_nha: rec.toa_nha, ngay: rec.ngay, hang_muc: rec.hang_muc, tinh_trang: rec.tinh_trang,
         nguoi_nhap: rec.nguoi_nhap, thoi_gian_gui: rec.thoi_gian_gui,
-        noi_dung_ngan: (rec.hang_muc === DAILY_CATEGORY ? rec.noi_dung_cong_viec : rec.noi_dung || '').slice(0,90)
+        noi_dung_ngan: (rec.hang_muc === DAILY_CATEGORY ? rec.noi_dung_cong_viec : rec.noi_dung || '').slice(0,90),
+        co_anh: !!(rec.anh_dinh_kem && rec.anh_dinh_kem.length),
+        anh_daidien: (rec.anh_dinh_kem && rec.anh_dinh_kem[0]) || null
       });
     }
     reportIndex.list = list;
