@@ -45,5 +45,17 @@
     "thoi_gian_gui": "2026-09-19T08:39:08.668Z",
     "noi_dung_ngan": "hhfggfggggggggg",
     "co_anh": true
+  },
+  {
+    "path": "data/2026-09-21_092830_62hh_pccc.json",
+    "sha": "66a7a88ee2c774990e2eb26131afcf7ffe1eb6f2",
+    "toa_nha": "62hh",
+    "ngay": "2026-09-21",
+    "hang_muc": "PCCC",
+    "tinh_trang": "Cần theo dõi",
+    "nguoi_nhap": "sivan-25",
+    "thoi_gian_gui": "2026-09-21T02:28:30.598Z",
+    "noi_dung_ngan": "vaaaa",
+    "co_anh": true
   }
 ]
